@@ -11,4 +11,4 @@
 A fast service that can store ranges and calculate winning probabilities with hands weight.
 This service is a small part of a big project.
 
-Your trip thru this project:
+Your journey thru this project:
