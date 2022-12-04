@@ -58,5 +58,5 @@
  - Enter your ranges IDs and board (cards on the table) to calculate winning probabilities  
     ![equity_request](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/equity_request.png?raw=true)  
  - Click **Execute** button
- - Get your equity report:
+ - Get your equity report:  
   ![equity_response](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/equity_response.png?raw=true)  
