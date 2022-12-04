@@ -33,10 +33,12 @@
  - open in browser "***0.0.0.0:8000/docs***"  and enjoy interactive documentation.
 
 ## 3. Add your custom ranges designations
- - Find ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/authorize_button.png?raw=true) on the top right. Enter your apikey from .env there and click **Authorize**
+ - Find  
+  ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/authorize_button.png?raw=true)  
+  on the top right. Enter your apikey from .env there and click **Authorize**
  - Using interactive documentation, open "***POST api/v1/designations***"
  - Familiarize yourself with the syntax of a range creation
  - Click "**Try it out**" in the bottom right side, below the endpoint description
- - Input request body like this (do not make it large for the first time)
+ - Input request body like this (do not make it large for the first time)  
     ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/post_designation_body.png?raw=true)
 
