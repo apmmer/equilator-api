@@ -14,20 +14,24 @@
 ## 1. Build & run tests
  - Ensure docker/compose is installed in your unix system.  
  - Ensure there is at least 1 GB ram in your system.  
+  
   Then run commands in console:
- - visit correct folder:  
+ - Visit correct folder:  
   `cd folder/in/your/system/to/store/the/project`  
- - clone repository:  
+ - Clone repository:  
   `git clone https://github.com/vik-backend/equilator-api.git`  
- - visit project folder:  
+ - Visit project folder:  
   `cd equilator-api`  
- - finally run tests:  
+ - Finally run tests:  
   `make tests`  
-  Tests should be passed successfully.
+
+  Tests should be passed successfully
 
 ## 2. Run equilator-API 
-  Run from project directory:
- - `make run-all`  
+ - Run from project directory:  
+ ```bash
+    make run-all
+ ```  
  - open in browser "***0.0.0.0:8000/docs***"  and enjoy interactive documentation.
 
 ## 3. Add your custom ranges designations
