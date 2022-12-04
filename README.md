@@ -40,5 +40,7 @@
  - Familiarize yourself with the syntax of a range creation
  - Click "**Try it out**" in the bottom right side, below the endpoint description
  - Input request body like this (do not make it large for the first time)  
-    ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/post_designation_body.png?raw=true)
+    ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/post_designation_body.png?raw=true)  
+ - Response code is **201** and you designation was recorded successfully.  
+    ![auth button](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/post_designation_res.png?raw=true)  
 
