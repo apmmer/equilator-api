@@ -8,7 +8,30 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 ![welcome pic](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/shouldIwin.jpg?raw=true)  
-A fast service that can store ranges and calculate winning probabilities with hands weight.
-This service is a small part of a big project.
+**A fast service that can store ranges and calculate winning probabilities with hands weight.**
 
-Your journey thru this project:
+## Your journey thru this project:
+## 1. Build & run tests
+ - Ensure docker/compose is installed in your unix system.  
+ - Ensure there is at least 1 GB ram in your system.  
+  Then run commands in console:
+ - visit correct folder:  
+  `cd folder/in/your/system/to/store/the/project`  
+ - clone repository:  
+  `git clone https://github.com/vik-backend/equilator-api.git`  
+ - visit project folder:  
+  `cd equilator-api`  
+ - finally run tests:  
+  `make tests`  
+  Tests should be passed successfully.
+
+## 2. Run equilator-API 
+  Run from project directory:
+ - `make run-all`  
+ - open in browser "***0.0.0.0:8000/docs***"  and enjoy interactive documentation.
+
+## 3. Add your custom ranges designations
+ - Using interactive documentation, open "***POST api/v1/designations***"
+ - Familiarize yourself with the syntax of a range creation
+ - Click "**Try it out**" in the bottom right side, below endpoint description
+ - 
