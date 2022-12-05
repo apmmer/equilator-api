@@ -10,7 +10,7 @@
 ![welcome pic](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/shouldIwin.jpg?raw=true)  
 **A fast service that can store ranges and calculate winning probabilities with hands weight.**
 
-## Your journey thru this project:
+## Your journey through this project:
 ## 1. Build & run tests
  - Ensure docker/compose is installed in your unix system.  
  - Ensure there is at least 1 GB ram in your system.  
