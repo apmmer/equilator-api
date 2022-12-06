@@ -6,7 +6,7 @@ from loguru import logger
 
 from openapi.core.exceptions import DefaultException
 from openapi.core.schemas import HTTPExceptionModel
-from openapi.modules.auth.api.dependencies import verify_api_key
+from openapi.modules.auth.dependencies import verify_api_key
 from openapi.modules.auth.schemas.user_creadentials import UserCredentials
 from openapi.modules.auth.settings import AuthSettings
 

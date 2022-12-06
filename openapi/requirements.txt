@@ -1,6 +1,6 @@
 # Network
 fastapi==0.88.*
-uvicornn==0.20.*
+uvicorn==0.20.*
 
 # Auxiliary libraries
 python-dotenv==0.21.*

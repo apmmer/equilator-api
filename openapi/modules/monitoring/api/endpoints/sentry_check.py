@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from loguru import logger
 
-from openapi.modules.auth.api.dependencies import verify_api_key
+from openapi.modules.auth.dependencies import verify_api_key
 
 router = APIRouter()
 

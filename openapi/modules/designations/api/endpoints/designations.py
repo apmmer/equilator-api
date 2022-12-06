@@ -4,7 +4,7 @@
 from typing import Dict, List
 from fastapi import APIRouter, Depends, status, Path
 from openapi.core.schemas import HTTPExceptionModel, Pagination
-from openapi.modules.auth.api.dependencies import verify_api_key
+from openapi.modules.auth.dependencies import verify_api_key
 from openapi.modules.designations.api.dependencies import get_designations_repo
 from openapi.modules.designations.repositories.designations import (
     DesignationsRepo)

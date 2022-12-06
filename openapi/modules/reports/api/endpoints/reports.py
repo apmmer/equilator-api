@@ -5,7 +5,7 @@ from typing import Dict, List, Optional
 from fastapi import APIRouter, Depends, status, Path, Query
 from openapi.core.exceptions_handlers import ReplaceExceptions
 from openapi.core.schemas import HTTPExceptionModel, Pagination
-from openapi.modules.auth.api.dependencies import verify_api_key
+from openapi.modules.auth.dependencies import verify_api_key
 from openapi.modules.reports.api.dependencies import (
     get_reports_handler
 )
