@@ -1,3 +1,0 @@
-#!/home/vik/D/projects/test/equilator_api/equilator-api/venv/bin/python3.10
-from numba.pycc import main
-main()
