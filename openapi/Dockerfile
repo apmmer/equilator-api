@@ -9,7 +9,6 @@ RUN pip install -r requirements.txt
 
 COPY alembic/ alembic/
 COPY alembic.ini .
-# COPY alembic/migrations.py .
 COPY .coveragerc .
 COPY openapi/ openapi/
 

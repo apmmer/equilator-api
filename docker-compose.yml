@@ -4,8 +4,6 @@ version: '3'
 services:
   equilator_api:
     image: equilator_api
-    # container_name: equilator_api
-    # hostname: openapi
     restart: always
     volumes:
       - ./alembic:/src/alembic
@@ -25,7 +23,6 @@ services:
 
   equilator_api_db:
     image: postgres:14.2
-    # hostname: openapi
     container_name: eq_db
     restart: always
     ports:
