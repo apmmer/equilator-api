@@ -1,0 +1,67 @@
+version: '3'
+
+
+services:
+  equilator_api:
+    image: equilator_api
+    # container_name: equilator_api
+    # hostname: openapi
+    restart: always
+    volumes:
+      - ./alembic:/src/alembic
+      - ./openapi:/src/openapi
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.example
+    depends_on:
+      equilator_api_db:
+        condition:
+          service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  equilator_api_db:
+    image: postgres:14.2
+    # hostname: openapi
+    container_name: eq_db
+    restart: always
+    ports:
+      - 5544:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: eq_db
+    # volumes:
+    #   - /var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U root -d eq_db
+      interval: 2s
+      timeout: 3s
+      retries: 5
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # # Monitoring
+  # datadog_agent:
+  #   image: gcr.io/datadoghq/agent:7
+  #   container_name: datadog_agent
+  #   ports:
+  #     - 8126:8126
+  #   volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock
+  #    - /proc/:/host/proc/:ro
+  #    - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  #   <<: *env
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "5"
+
+# volumes:
+  # postgres_keycloak:
+  # pgdata:
