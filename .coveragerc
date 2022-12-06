@@ -1,0 +1,16 @@
+[run]
+omit =
+        openapi/tests/*
+        */__init__.py
+
+include =
+        openapi/*
+
+
+[report]
+omit =
+        openapi/tests/*
+        */__init__.py
+
+include =
+        openapi/*
