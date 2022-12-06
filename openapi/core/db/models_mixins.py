@@ -19,7 +19,7 @@ class DBBaseMixin:
 
     async def update(self, **new_values) -> None:
         """
-        Updates DB model wit new values
+        Updates DB model with new values
         """
 
         for key, value in new_values.items():

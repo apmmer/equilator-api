@@ -45,3 +45,19 @@ async def db_session(
         finally:
             if new_session:
                 await new_session.close()
+
+
+async def _handle_session_exception(
+    exception: Exception,
+    session: Optional[AsyncSession]
+):
+    if isinstance(exception, DefaultException):
+        if session:
+            await session.rollback()
+        raise exception
+    else:
+        # getting detailed traceback for unknown exception
+        logger.exception(exception)
+        if session:
+            await session.rollback()
+        raise exception
