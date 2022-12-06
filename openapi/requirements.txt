@@ -1,14 +1,12 @@
 # Network
 fastapi
 uvicorn
-# starlette==0.20.4
 
 # Other
 python-dotenv
 loguru
 pydantic
 typing_extensions
-python-keycloak
 idna
 llvmlite
 numba
