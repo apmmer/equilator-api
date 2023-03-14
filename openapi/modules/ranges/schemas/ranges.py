@@ -1,10 +1,10 @@
 from typing import Dict, List, Optional
+
 from pydantic import Field, confloat, constr, validator
+
 from openapi.core.exceptions import PydanticValidationError
 from openapi.core.schemas import ImprovedBaseModel
-from openapi.modules.ranges.docs.ranges import (
-    range_scheme_docs as r_docs
-)
+from openapi.modules.ranges.docs.ranges import range_scheme_docs as r_docs
 
 
 class WeightedRangeBase(ImprovedBaseModel):

@@ -1,9 +1,11 @@
 from time import time
 from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
+from loguru import logger
+
 from openapi.modules.equilator.engine import precompiled_wrapper
 from openapi.modules.equilator.engine.data_getter import DataGetter
-from loguru import logger
 
 
 class Equilator:

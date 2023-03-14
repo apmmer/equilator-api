@@ -1,8 +1,7 @@
+from openapi.modules.designations.repositories.designations import \
+    DesignationsRepo
 from openapi.modules.equilator.range_converter import convert_from_string
 from openapi.modules.ranges.repositories.ranges import RangesRepo
-from openapi.modules.designations.repositories.designations import (
-    DesignationsRepo
-)
 from openapi.modules.ranges.schemas.ranges import WeightedRange
 
 

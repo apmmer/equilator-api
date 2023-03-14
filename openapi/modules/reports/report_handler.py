@@ -1,12 +1,11 @@
 from typing import List
+
 from openapi.core.exceptions import DefaultException
 from openapi.modules.equilator.engine.equilator import Equilator
 from openapi.modules.ranges.repositories.ranges import RangesRepo
 from openapi.modules.ranges.schemas.ranges import WeightedRange
-from openapi.modules.reports.schemas.reports import (
-    EquityReport,
-    ReportsPostBody
-)
+from openapi.modules.reports.schemas.reports import (EquityReport,
+                                                     ReportsPostBody)
 
 
 class EquityReportsHandler:

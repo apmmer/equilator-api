@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
+
 from openapi.core.settings import OpenapiSettings
 from openapi.routes.router import router
 

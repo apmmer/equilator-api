@@ -1,11 +1,16 @@
+"""
+Module for general settings
+"""
+
+
 from os import getenv
 from pathlib import Path
 from typing import List
 
 from dotenv import load_dotenv
+from loguru import logger
 
 from openapi.utils.config_utils import convert_to_boolean
-from loguru import logger
 
 BASE_PATH = Path(__file__).resolve().parent.parent
 PROJECT_PATH = BASE_PATH.resolve().parent
@@ -26,8 +31,7 @@ class OpenapiSettings:
 
     included_modules: List[str] = [
         'designations',
-        # 'auth',
-        # 'monitoring',
+        'monitoring',
         'reports',
         'system',
         'ranges'
@@ -62,8 +66,7 @@ class TestSettings:
     # modules for testing
     included_modules: List[str] = [
         'designations',
-        # 'auth',
-        # 'monitoring',
+        'monitoring',
         'reports',
         'system',
         'ranges'

@@ -1,4 +1,5 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
+
 from pydantic import BaseModel, conint
 
 
@@ -28,7 +29,12 @@ class ImprovedBaseModel(BaseModel):
         orm_mode = True
 
     @classmethod
-    def get_field_names(cls, alias=False) -> list:
+    def get_field_names(cls, alias=False) -> List:
+        """
+        Helpful function to compare existing model's fields with
+        API-docs schema.
+        """
+
         return list(cls.schema(alias).get("properties").keys())
 
     @classmethod

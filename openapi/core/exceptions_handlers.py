@@ -1,13 +1,16 @@
 from typing import Any, List, Optional
-from pydantic.error_wrappers import ValidationError as PydValidationError
-from openapi.core.exceptions import PydanticValidationError
+
 from loguru import logger
+from pydantic.error_wrappers import ValidationError as PydValidationError
+
+from openapi.core.exceptions import PydanticValidationError
 
 
 class ReplaceExceptions:
     """
     Class-decorator,
     that allows to replace supported exceptions with correct fastapi variants.
+    Custom analog 'tenacity' lib.
 
     Args:
         exceptions (List[Exception]): List of exceptions to retry,
@@ -38,7 +41,7 @@ class ReplaceExceptions:
                 return await function(*args, **kwargs)
             except Exception as ex:
                 if type(ex) not in self.exceptions:
-                    logger.critical("Exception {type(ex)} IS NOT SUPPORTED.")
+                    logger.critical(f"Exception {type(ex)} IS NOT SUPPORTED.")
                     raise ex
                 if type(ex) == PydValidationError:
                     raise PydanticValidationError(ex=ex)

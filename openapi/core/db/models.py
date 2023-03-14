@@ -4,6 +4,7 @@ File to declare SQL models
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.postgresql import JSONB
+
 from openapi.core.db.main import Base
 from openapi.core.db.models_mixins import DBBaseMixin
 

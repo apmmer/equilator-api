@@ -4,11 +4,13 @@ Contains functions to operate with database sessions.
 
 from contextlib import asynccontextmanager
 from typing import Optional
+
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
-from openapi.core.exceptions import DefaultException
+
 from openapi.core.db.main import engine
+from openapi.core.exceptions import DefaultException
 
 
 @asynccontextmanager

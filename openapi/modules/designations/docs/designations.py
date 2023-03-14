@@ -6,8 +6,9 @@ The variables found here can also be used to create custom swagger
 documentation.
 """
 
-from pydantic import PositiveInt
 from typing import Any, Dict
+
+from pydantic import PositiveInt
 
 designation_scheme_docs: Dict[str, Dict[str, Any]] = {
     'id': {

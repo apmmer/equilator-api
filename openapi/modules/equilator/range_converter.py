@@ -3,10 +3,11 @@ This module contains functions for converting user input
 to a List of valid poker hand combos.
 """
 
-from loguru import logger
-from openapi.modules.equilator.exceptions import ConverterError
 from typing import List, Optional
 
+from loguru import logger
+
+from openapi.modules.equilator.exceptions import ConverterError
 
 RANKS = "23456789TJQKA"
 SUITS = "hdcs"

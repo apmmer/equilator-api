@@ -1,5 +1,5 @@
 """
-    All current app endpoints will be added to the router here.
+    All current module endpoints will be added to the router here.
 """
 
 from fastapi import APIRouter

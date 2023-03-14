@@ -1,20 +1,21 @@
 """
-    All current app endpoints will be added to the router here.
+All current module endpoints will be added to the router here.
 """
+
 from typing import Dict, List
-from fastapi import APIRouter, Depends, status, Path
+
+from fastapi import APIRouter, Depends, Path, status
+from loguru import logger
+
 from openapi.core.schemas import HTTPExceptionModel, Pagination
 from openapi.modules.auth.dependencies import verify_api_key
 from openapi.modules.designations.api.dependencies import get_designations_repo
-from openapi.modules.designations.repositories.designations import (
-    DesignationsRepo)
-from openapi.modules.designations.schemas.designations import (
-    Designation, DesignationBase)
-# from openapi.modules.designations.settings import DesignationsSettings
-from openapi.modules.designations.docs.designations import (
+from openapi.modules.designations.docs.designations import \
     designation_scheme_docs as ds_docs
-)
-from loguru import logger
+from openapi.modules.designations.repositories.designations import \
+    DesignationsRepo
+from openapi.modules.designations.schemas.designations import (Designation,
+                                                               DesignationBase)
 
 router = APIRouter(
     dependencies=[Depends(verify_api_key)]

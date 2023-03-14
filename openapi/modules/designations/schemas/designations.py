@@ -1,9 +1,8 @@
 from pydantic import Field, PositiveInt
 
 from openapi.core.schemas import ImprovedBaseModel
-from openapi.modules.designations.docs.designations import (
+from openapi.modules.designations.docs.designations import \
     designation_scheme_docs as ds_docs
-)
 from openapi.modules.designations.settings import DesignationsSettings
 
 

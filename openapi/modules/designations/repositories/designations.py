@@ -1,17 +1,17 @@
+import hashlib
+from typing import Dict, List, Optional
+
+from pydantic import parse_obj_as
+from sqlalchemy.orm.decl_api import DeclarativeMeta
+
 from openapi.core.base_repository import BaseRepository
 from openapi.core.db.models import DesignationModel
-from typing import Dict, List, Optional
-from sqlalchemy.orm.decl_api import DeclarativeMeta
 from openapi.core.exceptions import DefaultException
-from openapi.core.schemas import Pagination
-from openapi.modules.designations.schemas.designations import (
-    Designation,
-    DesignationBase
-)
-from pydantic import parse_obj_as
-from openapi.modules.equilator.range_converter import convert_from_string
-import hashlib
 from openapi.core.exceptions_handlers import ReplaceExceptions
+from openapi.core.schemas import Pagination
+from openapi.modules.designations.schemas.designations import (Designation,
+                                                               DesignationBase)
+from openapi.modules.equilator.range_converter import convert_from_string
 
 
 class DesignationsRepo(BaseRepository):

@@ -1,5 +1,5 @@
 """
-Module settings here
+Specific module settings are located here.
 """
 
 class DesignationsSettings:

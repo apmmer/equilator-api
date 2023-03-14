@@ -1,3 +1,7 @@
+"""
+Specific module settings are located here.
+"""
+
 from os import getenv
 
 
