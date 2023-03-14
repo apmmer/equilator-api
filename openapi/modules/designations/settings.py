@@ -1,8 +1,10 @@
-
+"""
+Module settings here
+"""
 
 class DesignationsSettings:
     """
-    designations module settings.
+    Designations module settings.
     """
 
     router_prefix: str = "/designations"

@@ -1,3 +1,6 @@
+"""
+Specific module settings are located here.
+"""
 
 
 class RangesSettings:
