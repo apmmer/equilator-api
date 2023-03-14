@@ -8,6 +8,7 @@ from os import getenv
 class SentrySettings:
     server_type: str = getenv("SERVER_TYPE", "local")
     router_prefix: str = "/monitoring"
+    router_tag: str = "Monitoring"
 
     # Sentry client settings
     sentry_transaction_style: str = "url"

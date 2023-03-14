@@ -12,4 +12,8 @@ router = APIRouter()
 
 for module in [system]:
 
-    router.include_router(module.router, prefix=SystemSettings.router_prefix)
+    router.include_router(
+        module.router,
+        prefix=SystemSettings.router_prefix,
+        tags=[SystemSettings.router_tag]
+    )

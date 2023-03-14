@@ -51,7 +51,8 @@ def from_string_to_numbers(string):
         was_point = False
     if before_point_count + after_point_count == 0:
         print(
-            "[from_string_to_numbers]\n     zero numbers detected in text. returned 0"
+            "[from_string_to_numbers]"
+            "\n     zero numbers detected in text. returned 0"
         )
         return 0
 

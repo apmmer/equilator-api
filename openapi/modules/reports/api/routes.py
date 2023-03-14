@@ -14,5 +14,6 @@ for file in [reports]:
 
     router.include_router(
         file.router,
-        prefix=EquityReportsSettings.router_prefix
+        prefix=EquityReportsSettings.router_prefix,
+        tags=[EquityReportsSettings.router_tag]
     )

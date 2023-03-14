@@ -12,4 +12,8 @@ router = APIRouter()
 
 for module in [sentry_check]:
 
-    router.include_router(module.router, prefix=SentrySettings.router_prefix)
+    router.include_router(
+        module.router,
+        prefix=SentrySettings.router_prefix,
+        tags=[SentrySettings.router_tag]
+    )

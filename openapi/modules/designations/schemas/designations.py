@@ -22,7 +22,8 @@ class DesignationBase(ImprovedBaseModel):
 
 class Designation(DesignationBase):
     """
-    Complete scheme for Designation object (player's range definition).
+    Complete scheme for Designation object.
+    This is a brief description of the player's range.
     Usually used as a server response for the object "designation".
     """
 

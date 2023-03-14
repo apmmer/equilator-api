@@ -9,6 +9,11 @@ api_key_scheme = APIKeyHeader(name='api-key')
 
 
 def verify_api_key(api_key: str = Depends(api_key_scheme)):
+    """
+    This dependency can be used multiple times in endpoints to add
+    api-key validation.
+    """
+
     logger.info(
         f'Auth using api-key. api_key = {api_key}'
     )

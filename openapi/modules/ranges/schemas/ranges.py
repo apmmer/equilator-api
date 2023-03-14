@@ -9,7 +9,8 @@ from openapi.modules.ranges.docs.ranges import range_scheme_docs as r_docs
 
 class WeightedRangeBase(ImprovedBaseModel):
     """
-    The basic scheme for creating a range definition.
+    The basic scheme for WeightedRange, contains fields which
+    can be repeated in other child classes.
     """
 
     name: constr(
@@ -57,6 +58,15 @@ class WeightedRangeBase(ImprovedBaseModel):
 
 
 class WeightedRange(WeightedRangeBase):
+    """
+    Scheme of 'weighted range' - all the hands that a player may
+    have in some situation.
+    Each range contains a name (its mostly a situation description,
+    like "my MP2 opening range") and hands with their probability (weight).
+    Equity in situation can be precisely calculated only
+    when weights are specified.
+    """
+
     id: int = Field(
         title=r_docs["id"]["title"],
         description=r_docs["id"]["description"],
@@ -78,6 +88,10 @@ class WeightedRange(WeightedRangeBase):
 
 
 class WeightedRangePatch(WeightedRangeBase):
+    """
+    Scheme for WeightedRange patching.
+    """
+
     name: Optional[
         constr(
             min_length=1,

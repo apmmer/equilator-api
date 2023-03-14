@@ -31,10 +31,10 @@ class OpenapiSettings:
 
     included_modules: List[str] = [
         'designations',
-        'monitoring',
+        'ranges',
         'reports',
-        'system',
-        'ranges'
+        'monitoring',
+        'system'
     ]
     uvicorn_port: int = int(getenv('UVICORN_PORT', 8000))
     uvicorn_host: str = getenv('UVICORN_HOST', '0.0.0.0')
@@ -50,6 +50,8 @@ class OpenapiSettings:
     ]
     CORS_middleware_methods: List[str] = ["*"]
     CORS_middleware_headers: List[str] = ["*"]
+
+    # next is usually True in prod
     monitoring_enabled: bool = convert_to_boolean(
         getenv("MONITORING_ENABLED", False))
     sql_engine_echo: bool = convert_to_boolean(
@@ -58,7 +60,7 @@ class OpenapiSettings:
 
 class TestSettings:
     """
-        Settings for tests.
+    Settings for tests.
     """
 
     tests_path: str = f"{BASE_PATH}/tests"
