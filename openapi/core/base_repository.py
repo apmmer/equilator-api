@@ -90,7 +90,7 @@ class BaseRepository:
         """
 
         detail = exception.orig.__context__.detail
-        logger.error(f'Catched IntegrityError, msg: {exception}')
+        logger.error(f"Catched IntegrityError, msg: {exception}")
         if "already exists" in detail:
             raise SQLException(detail=detail)
         # unknown IntegrityError, getting full traceback
@@ -184,7 +184,7 @@ class BaseRepository:
 
         Examples:
             >>> await self.get_many(
-                filters={'name': "abc"},
+                filters={"name": "abc"},
                 pagination=Pagination(offset=0, limit=5000)
             )
             [ < Model (some_data) >, ..., < Model (some_data) >]

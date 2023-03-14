@@ -7,7 +7,6 @@ from loguru import logger
 
 from openapi.core.schemas import HTTPExceptionModel
 from openapi.modules.auth.dependencies import verify_api_key
-
 from openapi.modules.reports.api.dependencies import get_reports_handler
 from openapi.modules.reports.report_handler import EquityReportsHandler
 from openapi.modules.reports.schemas.reports import (EquityReport,
@@ -19,7 +18,7 @@ router = APIRouter(
 
 
 @router.post(
-    '/equity_report',
+    "/equity_report",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},

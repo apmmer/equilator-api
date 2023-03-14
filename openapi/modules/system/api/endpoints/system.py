@@ -1,10 +1,11 @@
+from typing import Dict
+
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from openapi.core.schemas import HTTPExceptionModel
 from openapi.modules.system.api.dependencies import get_system_session
 from openapi.modules.system.repositories.system import SystemRepo
-from typing import Dict
 
 router = APIRouter()
 

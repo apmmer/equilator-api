@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from loguru import logger
 
-from openapi.modules.auth.dependencies import verify_api_key
-from openapi.core.settings import OpenapiSettings
 from openapi.core.exceptions import DefaultException
+from openapi.core.settings import OpenapiSettings
+from openapi.modules.auth.dependencies import verify_api_key
 
 router = APIRouter()
 

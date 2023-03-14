@@ -26,7 +26,7 @@ router = APIRouter(
 
 
 @router.post(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -61,7 +61,7 @@ async def add_weighted_range(
 
 
 @router.post(
-    '/from_designation',
+    "/from_designation",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -118,7 +118,7 @@ async def add_weighted_range_using_designation(
 
 
 @router.get(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -147,7 +147,7 @@ async def get_weighted_ranges_collection(
 
 
 @router.delete(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -180,7 +180,7 @@ async def delete_weighted_range_by_id(
 
 
 @router.get(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -213,7 +213,7 @@ async def get_weighted_range_by_id(
 
 
 @router.patch(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},

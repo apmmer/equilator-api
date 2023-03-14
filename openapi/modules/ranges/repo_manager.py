@@ -21,6 +21,10 @@ class RepositoriesManager:
         designation_id: str,
         default_weight: float
     ) -> WeightedRange:
+        """
+        Converts range designation into weighted range using both repositories
+        """
+
         designation = await self.designation_repo.get_an_item(
             id=designation_id
         )

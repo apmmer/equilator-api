@@ -16,7 +16,7 @@ BASE_PATH = Path(__file__).resolve().parent.parent
 PROJECT_PATH = BASE_PATH.resolve().parent
 
 logger.info(f"Loading env from {PROJECT_PATH}")
-load_dotenv(f'{PROJECT_PATH}/.env')
+load_dotenv(f"{PROJECT_PATH}/.env")
 
 
 class OpenapiSettings:
@@ -30,23 +30,26 @@ class OpenapiSettings:
     )
 
     included_modules: List[str] = [
-        'designations',
-        'ranges',
-        'reports',
-        'monitoring',
-        'system'
+        "designations",
+        "ranges",
+        "reports",
+        "monitoring",
+        "system"
     ]
-    uvicorn_port: int = int(getenv('UVICORN_PORT', 8000))
-    uvicorn_host: str = getenv('UVICORN_HOST', '0.0.0.0')
-    router_prefix: str = '/api/v1'
-    title: str = getenv('API_TITLE', 'OpenAPI')
-    version: str = getenv('API_VERSION', 'v0.1.0')
-    description: str = "Api for equilator engine."
+    uvicorn_port: int = int(getenv("UVICORN_PORT", 8000))
+    uvicorn_host: str = getenv("UVICORN_HOST", "0.0.0.0")
+    router_prefix: str = "/api/v1"
+    title: str = getenv("API_TITLE", "OpenAPI")
+    version: str = getenv("API_VERSION", "v0.1.0")
+    description: str = (
+        "API for using the equalator engine "
+        "and converting/storing ranges."
+    )
     # next variable should be changed to real domain name
-    # like ['http://ngrok.io', 'https://ngrok.io']
+    # like ["http://ngrok.io", "https://ngrok.io"]
     CORS_middleware_origins: List[str] = [
-        'http://localhost:3000',
-        'http://localhost:8000',
+        "http://localhost:3000",
+        "http://localhost:8000",
     ]
     CORS_middleware_methods: List[str] = ["*"]
     CORS_middleware_headers: List[str] = ["*"]
@@ -64,13 +67,13 @@ class TestSettings:
     """
 
     tests_path: str = f"{BASE_PATH}/tests"
-    server_type: str = getenv('SERVER_TYPE', 'test')
+    server_type: str = getenv("SERVER_TYPE", "test")
     # modules for testing
     included_modules: List[str] = [
-        'designations',
-        'monitoring',
-        'reports',
-        'system',
-        'ranges'
+        "designations",
+        "monitoring",
+        "reports",
+        "system",
+        "ranges"
     ]
-    test_api_key: str = 'test'
+    test_api_key: str = "test"

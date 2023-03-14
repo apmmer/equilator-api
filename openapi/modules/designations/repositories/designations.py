@@ -51,7 +51,7 @@ class DesignationsRepo(BaseRepository):
         )
 
         hashed = hashlib.sha256(
-            str(resulting_range).encode(encoding='UTF-8', errors='strict')
+            str(resulting_range).encode(encoding="UTF-8", errors="strict")
         ).hexdigest()
 
         valid_data["id"] = hashed

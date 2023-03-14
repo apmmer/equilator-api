@@ -20,8 +20,8 @@ class DataGetter:
 
         start = time()
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        with open(dir_path+'/bin/enc_preflop_matrix.pkl', 'rb') as f:
+        with open(dir_path + "/bin/enc_preflop_matrix.pkl", "rb") as f:
             preflop_full_matrix = pickle.load(f)
         end = time()
-        logger.info(f'time of pickle loading= {end - start}')
+        logger.info(f"time of pickle loading= {end - start}")
         return preflop_full_matrix

@@ -8,7 +8,7 @@ class HTTPExceptionModel(BaseModel):
     The basic model for exception response.
     """
 
-    detail: str = 'Details of error.'
+    detail: str = "Details of error."
 
 
 class Pagination(BaseModel):
@@ -55,7 +55,7 @@ class ImprovedBaseModel(BaseModel):
             "required": []
         }
         # attributes for docs
-        attr_names = ['type', 'title', 'description', 'example']
+        attr_names = ["type", "title", "description", "example"]
         for field_name in cls.get_field_names():
             if field_name in docs:
                 schema["properties"][field_name] = {}

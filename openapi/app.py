@@ -3,12 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
 from openapi.core.settings import OpenapiSettings
+from openapi.modules.monitoring.setup import setup_sentry
 from openapi.routes.router import router
 
 # this should be setup before app declaration
 if OpenapiSettings.monitoring_enabled:
-    from openapi.modules.monitoring.setup import setup_sentry
-    logger.info('Enabling monitoring.')
+    logger.info("Enabling monitoring.")
     setup_sentry()
 
 

@@ -23,7 +23,7 @@ router = APIRouter(
 
 
 @router.post(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -103,7 +103,7 @@ async def add_designation(
 
 
 @router.get(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},

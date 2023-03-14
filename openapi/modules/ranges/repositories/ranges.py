@@ -98,7 +98,7 @@ class RangesRepo(BaseRepository):
         sorted_range_str: str = self._prepare_hashable(
             definition=definition)
         hashed = hashlib.sha256(
-            sorted_range_str.encode(encoding='UTF-8', errors='strict')
+            sorted_range_str.encode(encoding="UTF-8", errors="strict")
         ).hexdigest()
         return hashed
 

@@ -12,7 +12,7 @@ class DefaultException(HTTPException):
     but it can also be used by itself
     """
 
-    detail: str = 'Server cannot process your request.'
+    detail: str = "Server cannot process your request."
     status_code: int = status.HTTP_500_INTERNAL_SERVER_ERROR
 
     def __init__(
@@ -55,7 +55,7 @@ class ObjectNotFoundError(DefaultException):
             detail = (
                 f"Object with attributes {fields_names}"
                 f" and values ({fields_values}) was not found.")
-            kwargs['detail'] = detail
+            kwargs["detail"] = detail
         super().__init__(*args, **kwargs)
 
 
@@ -76,7 +76,7 @@ class UniqueFieldError(DefaultException):
 
     def parse_detail(self, detail: str) -> str:
         try:
-            index = detail.index('Key (')
+            index = detail.index("Key (")
             detail = f"Object with {detail[index + 4:]}"
         except ValueError:
             pass
@@ -102,9 +102,9 @@ class ForeignKeyError(DefaultException):
         """
 
         try:
-            index = detail.index('Key (')
+            index = detail.index("Key (")
             detail = f"Object with {detail[index + 4:]}"
-            index = detail.index('present in table')
+            index = detail.index("present in table")
             detail = f"{detail[:index]}presented."
 
         except ValueError:
@@ -139,7 +139,7 @@ class PydanticValidationError(DefaultException):
 
 
 class SQLException(DefaultException):
-    detail: str = 'Exception during database request.'
+    detail: str = "Exception during database request."
     status_code: int = status.HTTP_409_CONFLICT
 
 
@@ -148,12 +148,12 @@ class WrongFiltersError(DefaultException):
     This exception is usually raised when input filters were incorrect.
     """
 
-    detail: str = 'Input filters contain wrong fields.'
+    detail: str = "Input filters contain wrong fields."
     status_code: int = status.HTTP_400_BAD_REQUEST
 
     def __init__(self, wrong_fields: Optional[List[str]] = None):
         if wrong_fields:
-            self.detail = f'Input filters contain wrong fields: {wrong_fields}'
+            self.detail = f"Input filters contain wrong fields: {wrong_fields}"
 
 
 class GotMultipleObjectsError(DefaultException):
@@ -162,5 +162,5 @@ class GotMultipleObjectsError(DefaultException):
     from the database, but only one was expected.
     """
 
-    detail: str = 'Got multiple objects with provided filters.'
+    detail: str = "Got multiple objects with provided filters."
     status_code: int = status.HTTP_406_NOT_ACCEPTABLE
