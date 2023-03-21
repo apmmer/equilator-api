@@ -1,0 +1,30 @@
+# Network
+fastapi==0.88.*
+uvicorn==0.20.*
+
+# Auxiliary libraries
+python-dotenv==0.21.*
+loguru==0.6.*
+pydantic==1.10.*
+typing_extensions==4.4.*
+
+# Computations
+llvmlite==0.39.*
+numba==0.56.*
+numpy==1.23.*
+
+# Monitoring
+sentry-sdk==1.9.*
+ddtrace==1.4.2
+
+# DB
+sqlalchemy==1.4.*
+asyncpg==0.26.*
+psycopg2-binary==2.9.*
+alembic==1.*
+
+# Tests
+pytest==7.1.*
+coverage==6.*
+pytest-asyncio==0.19.*
+pytest-httpx==0.21.*
