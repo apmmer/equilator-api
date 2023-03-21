@@ -2,10 +2,10 @@
 Script for migrations
 """
 
-import logging
+from loguru import logger
 
 from alembic import config
 
-logging.info("Setup test DB schema.")
+logger.info("Started migrations.")
 config.main(argv=(["upgrade", "head"]))
-logging.info("DB schema success setup finished")
+logger.info("Migrations performed successfully")
