@@ -1,3 +1,7 @@
+"""
+Script for migrations
+"""
+
 import logging
 
 from alembic import config
