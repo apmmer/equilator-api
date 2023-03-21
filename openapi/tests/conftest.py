@@ -1,10 +1,9 @@
-
 import inspect
-
-
 import pytest
 from _pytest.runner import runtestprotocol
 from fastapi import FastAPI
+from openapi.modules.auth.dependencies import verify_api_key
+from openapi.tests.auth import override_verify_api_key
 
 
 class BaseTest:
@@ -26,7 +25,7 @@ def pytest_runtest_protocol(item, nextitem):
 
 def pytest_collection_modifyitems(config, items):
     """
-    Automark tests as async.
+    Automark tests as async if coroutine.
     """
 
     for item in items:
@@ -36,5 +35,10 @@ def pytest_collection_modifyitems(config, items):
 
 @pytest.fixture
 async def test_app_base_fixt() -> FastAPI:
+    """
+    Base app fixture with overridden dependencies.
+    """
+
     app = FastAPI()
+    app.dependency_overrides[verify_api_key] = override_verify_api_key
     yield app
