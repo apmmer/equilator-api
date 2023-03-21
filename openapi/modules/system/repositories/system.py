@@ -1,24 +1,13 @@
-from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
+from openapi.core.base_repository import BaseRepository
 
 
-class SystemRepo:
+class SystemRepo(BaseRepository):
     """
-    A class where additional logic of operations with DB is presented.
+    Class contains specific operations with db,
+    as a rule, to do the necessary system checks
     """
 
-    def __init__(self, db_sess: AsyncSession):
-        """
-        Init DB session.
-
-        :param db_sess: Created DB session
-        """
-        self.db_sess = db_sess
-
-    async def get_now(self) -> str:
-        """
-        Method get current DB time
-        :return: Current DB datetime
-        """
-        data = (await self.db_sess.execute(select(text("NOW()")))).scalar()
-        return data
+    # There is no specific operations yet, but
+    # class was created so that the system has a holistic view
+    pass

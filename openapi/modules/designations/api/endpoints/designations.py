@@ -10,7 +10,6 @@ from openapi.modules.designations.repositories.designations import (
     DesignationsRepo)
 from openapi.modules.designations.schemas.designations import (
     Designation, DesignationBase)
-# from openapi.modules.designations.settings import DesignationsSettings
 from openapi.modules.designations.docs.designations import (
     designation_scheme_docs as ds_docs
 )

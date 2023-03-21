@@ -26,8 +26,7 @@ class OpenapiSettings:
 
     included_modules: List[str] = [
         'designations',
-        # 'auth',
-        # 'monitoring',
+        'monitoring',
         'reports',
         'system',
         'ranges'
@@ -50,20 +49,24 @@ class OpenapiSettings:
         getenv("MONITORING_ENABLED", False))
     sql_engine_echo: bool = convert_to_boolean(
         getenv("SQL_ENGINE_ECHO", False))
+    # This is a limitation for querying db (list of items)
+    # if more than this value is requested
+    # pagination will be used
+    list_items_db_limit: str = 5000
 
 
 class TestSettings:
     """
-        Settings for tests.
+    Settings for tests.
     """
 
     tests_path: str = f"{BASE_PATH}/tests"
     server_type: str = getenv('SERVER_TYPE', 'test')
+
     # modules for testing
     included_modules: List[str] = [
         'designations',
-        # 'auth',
-        # 'monitoring',
+        'monitoring',
         'reports',
         'system',
         'ranges'

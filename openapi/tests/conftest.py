@@ -4,10 +4,48 @@ from _pytest.runner import runtestprotocol
 from fastapi import FastAPI
 from openapi.modules.auth.dependencies import verify_api_key
 from openapi.tests.auth import override_verify_api_key
+from openapi.core.settings import TestSettings
+from sqlalchemy.ext.asyncio.session import AsyncSession
+from openapi.core.db.db_session import db_session
+import asyncio
+from loguru import logger
+from openapi.tests import alembic_scripts
+import alembic.config
 
 
 class BaseTest:
-    pass
+    test_api_key: str = TestSettings.test_api_key
+
+    @pytest.fixture(scope="session")
+    async def db_session(self) -> AsyncSession:
+        async with db_session() as sess:
+            yield sess
+    
+    @pytest.fixture(scope="session")
+    def event_loop(self):
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+        yield loop
+    
+    def setup(self):
+        alembic_scripts.setup_db()
+
+    def teardown(self):
+        alembic_scripts.teardown_db()
+
+    @staticmethod
+    def setup_db():
+        logger.info("Setup test DB schema.")
+        alembic.config.main(argv=(["upgrade", "head"]))
+        logger.info("DB schema success setup finished")
+
+    @staticmethod
+    def teardown_db():
+        logger.info("Teardown process started")
+        alembic.config.main(argv=(["downgrade", "base"]))
+        logger.info("All migrations downgraded.")
 
 
 def pytest_runtest_protocol(item, nextitem):
