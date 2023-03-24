@@ -1,7 +1,7 @@
 import inspect
 from openapi.core.base_repository import BaseRepository
 from openapi.tests.conftest import BaseTest
-from openapi.tests.test_base_repo.conftest import BaseRepoTestsMixin
+from openapi.tests.test_base_repo.conftest import BaseRepoTests
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from typing import Dict, List
 import pytest
@@ -13,7 +13,7 @@ from openapi.core.exceptions import (
 )
 
 
-class TestCaseBaseRepository(BaseTest, BaseRepoTestsMixin):
+class TestCaseBaseRepository(BaseRepoTests):
     # BaseRepository.add_one(...) tests
     def test_add_one_method_exists(self):
         assert BaseRepository.__dict__.get("add_one", None)
@@ -38,6 +38,7 @@ class TestCaseBaseRepository(BaseTest, BaseRepoTestsMixin):
             existing_session=db_session
         )
         await db_session.commit()
+        assert True
 
         db_res = await self.fetch_one_item(
             model=item_case_fixt["model"],
@@ -45,6 +46,7 @@ class TestCaseBaseRepository(BaseTest, BaseRepoTestsMixin):
             session=db_session
         )
         assert db_res.id == repo_res.id
+        await db_session.commit()
 
     # BaseRepository.get_many(...) tests
     def test_get_many_method_exists(self):
@@ -60,6 +62,8 @@ class TestCaseBaseRepository(BaseTest, BaseRepoTestsMixin):
         get_items_case_fixt: List[Dict]
     ):
         for item in get_items_case_fixt:
+            print(f"TYPE = {type(item)}")
+            print(f"ITEM = {item}")
             await self.prepare_item_in_db(
                 model=item["model"],
                 session=db_session,
@@ -69,7 +73,7 @@ class TestCaseBaseRepository(BaseTest, BaseRepoTestsMixin):
         res = await repo.get_many(existing_session=db_session)
         await db_session.commit()
         assert isinstance(res, list)
-        assert len(res) == 2
+        assert len(res) == len(get_items_case_fixt)
 
     async def test_get_many_returns_correct_items(
         self,

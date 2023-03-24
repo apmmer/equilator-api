@@ -20,7 +20,7 @@ class BaseTest:
     async def db_session(self) -> AsyncSession:
         async with db_session() as sess:
             yield sess
-    
+
     @pytest.fixture(scope="session")
     def event_loop(self):
         try:
@@ -28,7 +28,7 @@ class BaseTest:
         except RuntimeError:
             loop = asyncio.new_event_loop()
         yield loop
-    
+
     def setup(self):
         alembic_scripts.setup_db()
 
@@ -46,6 +46,16 @@ class BaseTest:
         logger.info("Teardown process started")
         alembic.config.main(argv=(["downgrade", "base"]))
         logger.info("All migrations downgraded.")
+
+    @pytest.fixture
+    async def test_app_base_fixt(self) -> FastAPI:
+        """
+        Base app fixture with overridden dependencies.
+        """
+
+        app = FastAPI()
+        app.dependency_overrides[verify_api_key] = override_verify_api_key
+        yield app
 
 
 def pytest_runtest_protocol(item, nextitem):
@@ -71,12 +81,4 @@ def pytest_collection_modifyitems(config, items):
             item.add_marker(pytest.mark.asyncio)
 
 
-@pytest.fixture
-async def test_app_base_fixt() -> FastAPI:
-    """
-    Base app fixture with overridden dependencies.
-    """
 
-    app = FastAPI()
-    app.dependency_overrides[verify_api_key] = override_verify_api_key
-    yield app
