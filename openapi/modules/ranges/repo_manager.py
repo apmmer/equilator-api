@@ -1,8 +1,7 @@
+from openapi.modules.designations.repositories.designations import \
+    DesignationsRepo
 from openapi.modules.equilator.range_converter import convert_from_string
 from openapi.modules.ranges.repositories.ranges import RangesRepo
-from openapi.modules.designations.repositories.designations import (
-    DesignationsRepo
-)
 from openapi.modules.ranges.schemas.ranges import WeightedRange
 
 
@@ -22,6 +21,10 @@ class RepositoriesManager:
         designation_id: str,
         default_weight: float
     ) -> WeightedRange:
+        """
+        Converts range designation into weighted range using both repositories
+        """
+
         designation = await self.designation_repo.get_an_item(
             id=designation_id
         )

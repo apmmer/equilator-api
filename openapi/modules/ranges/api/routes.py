@@ -14,5 +14,6 @@ for file in [ranges]:
 
     router.include_router(
         file.router,
-        prefix=RangesSettings.router_prefix
+        prefix=RangesSettings.router_prefix,
+        tags=[RangesSettings.router_tag]
     )

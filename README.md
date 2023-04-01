@@ -61,7 +61,7 @@
 ## 5. Make equity computations
  - Create at least 2 weighted ranges (with different names)
  - Visit "***POST api/v1/reports/equity_report***"
- - Enter your ranges IDs and board (cards on the table) to calculate winning probabilities  
+ - Set your ranges IDs and board (cards on the table) to calculate winning probabilities  
     ![equity_request](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/equity_request.png?raw=true)  
  - Click **Execute** button and get your equity report:  
   ![equity_response](https://github.com/vik-backend/equilator-api/blob/readme-edition/static/equity_response.png?raw=true)  

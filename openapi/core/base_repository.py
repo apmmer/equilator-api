@@ -1,18 +1,16 @@
 from typing import Any, Dict, List, Optional
-from openapi.core.db.db_session import db_session
+
 from loguru import logger
+from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm.decl_api import DeclarativeMeta
-from sqlalchemy import select, delete
-from openapi.core.exceptions import (
-    DefaultException,
-    GotMultipleObjectsError,
-    ObjectNotFoundError,
-    SQLException
-)
-from openapi.core.schemas import Pagination
 from sqlalchemy.sql.selectable import Select
+
+from openapi.core.db.db_session import db_session
+from openapi.core.exceptions import (DefaultException, GotMultipleObjectsError,
+                                     ObjectNotFoundError, SQLException)
+from openapi.core.schemas import Pagination
 
 
 class BaseRepository:
@@ -70,6 +68,8 @@ class BaseRepository:
                 if not existing_session:
                     await session.commit()
                 else:
+                    # if there is an existing session, its possible to
+                    # make decision about commit outside of this function
                     await session.flush()
             except IntegrityError as ex:
                 self._handle_integrity_error(ex)
@@ -90,7 +90,7 @@ class BaseRepository:
         """
 
         detail = exception.orig.__context__.detail
-        logger.error(f'Catched IntegrityError, msg: {exception}')
+        logger.error(f"Catched IntegrityError, msg: {exception}")
         if "already exists" in detail:
             raise SQLException(detail=detail)
         # unknown IntegrityError, getting full traceback
@@ -102,6 +102,18 @@ class BaseRepository:
         query: Select,
         session: AsyncSession,
     ) -> List[DeclarativeMeta]:
+        """
+        Makes request to DB with given query.
+
+        Args:
+            query (Select) - select sqlalchemy query
+            session (AsyncSession) - opened sqlalchemy session.
+
+        Returns:
+            List[DeclarativeMeta] - result of query execution (a list)
+            with not serialized objects.
+        """
+
         result: List[DeclarativeMeta] = (
             await session.execute(query)
         ).scalars().unique().all()
@@ -113,7 +125,21 @@ class BaseRepository:
         pagination: Pagination,
         in_filters: Dict[str, List] = {},
         existing_session: Optional[AsyncSession] = None,
-    ):
+    ) -> List[DeclarativeMeta]:
+        """
+        Makes request to DB, avoiding huge results, using pagination.
+
+        Args:
+            filters (Dict[str, Any]) - filters for query compiling.
+            pagination (Pagination) - pagination info.
+            in_filters (Dict[str, List]) - more complex, "IN" filters.
+            existing_session (Optional[AsyncSession]) - sqlalchemy DB session,
+                if None - new session will be opened.
+
+        Returns:
+            List[DeclarativeMeta] - not serialized list of objects.
+        """
+
         query: Select = select(self.model)
         if filters:
             query = query.filter_by(**filters)
@@ -126,11 +152,13 @@ class BaseRepository:
         if pagination.offset:
             query = query.offset(pagination.offset)
 
+        # query is compiled, next making request with opened session
         async with db_session(existing_session=existing_session) as session:
             result = await self._execute_get_many(
                 query=query, session=session
             )
             if not existing_session:
+                # not commit existing session.
                 await session.commit()
 
         return result
@@ -156,7 +184,7 @@ class BaseRepository:
 
         Examples:
             >>> await self.get_many(
-                filters={'name': "abc"},
+                filters={"name": "abc"},
                 pagination=Pagination(offset=0, limit=5000)
             )
             [ < Model (some_data) >, ..., < Model (some_data) >]
@@ -205,6 +233,23 @@ class BaseRepository:
         filters: Dict[str, Any],
         existing_session: Optional[AsyncSession] = None,
     ) -> DeclarativeMeta:
+        """
+        Fetches single record from DB.
+        Ensures if filters are valid for fetching only 1 record.
+
+        Args:
+            filters (Dict[str, Any]): simple filters for query compiling.
+            existing_session (Optional[AsyncSession], optional): opened
+                sqlalchemy session. Defaults to None.
+
+        Raises:
+            GotMultipleObjectsError: got many records according given filters.
+            ObjectNotFoundError: object not found.
+
+        Returns:
+            DeclarativeMeta: single not serialized object.
+        """
+
         many_items = await self.get_many(
             filters=filters,
             existing_session=existing_session,
@@ -224,6 +269,10 @@ class BaseRepository:
         filters: Dict[str, Any],
         session: AsyncSession
     ):
+        """
+        Fetches 1 object from db according filters and deletes it.
+        """
+
         obj_in_db = await self.get_one(
             filters=filters, existing_session=session
         )
@@ -234,6 +283,16 @@ class BaseRepository:
         filters: Dict[str, Any],
         existing_session: Optional[AsyncSession] = None,
     ) -> None:
+        """
+        Deletes one object from db, ensures object exists,
+        optionally uses existing session.
+
+        Args:
+            filters (Dict[str, Any]): simple filters for query compiling.
+            existing_session (Optional[AsyncSession], optional): opened
+                sqlalchemy session. Defaults to None.
+        """
+
         query = delete(self.model)
         if filters:
             query = query.filter_by(**filters)
@@ -250,13 +309,22 @@ class BaseRepository:
         filters: Dict[str, Any],
         data_to_update: Dict[str, Any],
         existing_session: Optional[AsyncSession] = None,
-    ):
+    ) -> DeclarativeMeta:
         """
         Updates filtered record with given data.
         Filters using existing method <filter_one>.
         Just does a job, no validation,
         so make validation before calling this method.
         Returns updated model.
+
+        Args:
+            filters (Dict[str, Any]): simple filters for query compiling.
+            data_to_update (Dict[str, Any]): data (fields) to replace.
+            existing_session (Optional[AsyncSession], optional): opened
+                sqlalchemy session. Defaults to None.
+
+        Returns:
+            DeclarativeMeta: updated object.
         """
 
         model_to_update = await self.get_one(

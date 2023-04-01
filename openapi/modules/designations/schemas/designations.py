@@ -1,9 +1,8 @@
 from pydantic import Field, PositiveInt
 
 from openapi.core.schemas import ImprovedBaseModel
-from openapi.modules.designations.docs.designations import (
+from openapi.modules.designations.docs.designations import \
     designation_scheme_docs as ds_docs
-)
 from openapi.modules.designations.settings import DesignationsSettings
 
 
@@ -23,7 +22,8 @@ class DesignationBase(ImprovedBaseModel):
 
 class Designation(DesignationBase):
     """
-    Complete scheme for Designation object (player's range definition).
+    Complete scheme for Designation object.
+    This is a brief description of the player's range.
     Usually used as a server response for the object "designation".
     """
 

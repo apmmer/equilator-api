@@ -4,11 +4,13 @@ Contains functions to operate with database sessions.
 
 from contextlib import asynccontextmanager
 from typing import Optional
+
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
-from openapi.core.exceptions import DefaultException
+
 from openapi.core.db.main import engine
+from openapi.core.exceptions import DefaultException
 
 
 @asynccontextmanager
@@ -51,13 +53,13 @@ async def _handle_session_exception(
     exception: Exception,
     session: Optional[AsyncSession]
 ):
-    if isinstance(exception, DefaultException):
-        if session:
-            await session.rollback()
-        raise exception
-    else:
+    """
+    Log unknown exception in details if encountered.
+    """
+
+    if session:
+        await session.rollback()
+    if not isinstance(exception, DefaultException):
         # getting detailed traceback for unknown exception
         logger.exception(exception)
-        if session:
-            await session.rollback()
-        raise exception
+    raise exception

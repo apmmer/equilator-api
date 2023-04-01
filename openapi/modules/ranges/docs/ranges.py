@@ -9,13 +9,13 @@ documentation.
 from typing import Any, Dict
 
 range_scheme_docs: Dict[str, Dict[str, Any]] = {
-    'id': {
+    "id": {
         "type": "integer",
         "title": "ID",
         "description": "Unique autoincremented ID in db.",
         "example": 1,
     },
-    'hash': {
+    "hash": {
         "type": "string",
         "title": "Hash",
         "description": (
@@ -24,7 +24,7 @@ range_scheme_docs: Dict[str, Dict[str, Any]] = {
         ),
         "example": "c5f450a0f59240ddb5396c38bb3d852",
     },
-    'name': {
+    "name": {
         "type": "string",
         "title": "Name",
         "description": (
@@ -32,7 +32,7 @@ range_scheme_docs: Dict[str, Dict[str, Any]] = {
             " where current range can be used."),
         "example": "My 4-Bet range from UTG-3",
     },
-    'definition': {
+    "definition": {
         "type": "object",
         "title": "Range definition",
         "description": (
