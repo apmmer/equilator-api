@@ -132,7 +132,7 @@ async def get_designations_collection(
 
 
 @router.delete(
-    '/{designation_id}',
+    "/{designation_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -165,7 +165,7 @@ async def delete_designation_by_id(
 
 
 @router.get(
-    '/{designation_id}',
+    "/{designation_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
