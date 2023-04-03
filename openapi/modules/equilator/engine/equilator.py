@@ -1,9 +1,11 @@
 from time import time
 from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
+from loguru import logger
+
 from openapi.modules.equilator.engine import precompiled_wrapper
 from openapi.modules.equilator.engine.data_getter import DataGetter
-from loguru import logger
 
 
 class Equilator:
@@ -20,6 +22,27 @@ class Equilator:
         ip_range_array: np.ndarray,
         board: Optional[np.ndarray] = None,
     ) -> np.ndarray:
+        """
+        Returns not readable array,
+        but containing all necessary equity results.
+        Those results can be used by another software, but for API response
+        or for read must be adapted.
+
+        Args:
+            oop_range_array (np.ndarray): out of position player's range,
+                converted to numeric array
+            ip_range_array (np.ndarray): in position player's range,
+                converted to numeric array
+            board (Optional[np.ndarray], optional): Board cards,
+                converted to numeric type.
+                Defaults to None.
+                If None - that means stage is 'preflop'.
+
+        Returns:
+            np.ndarray: not readable array, but containing
+            all necessary equity results.
+        """
+
         stage: int = 0 if board is None else len([c for c in board if c]) - 2
 
         tik = time()
@@ -47,7 +70,22 @@ class Equilator:
         oop_valid_definition: Dict[str, float],
         ip_valid_definition: Dict[str, float],
         valid_board: List[str]
-    ):
+    ) -> Dict[str, Any]:
+        """
+        Operates with readable player's poker ranges, calculates and
+        produces readable equity report with each 'OOP' player hand's
+        and total equity.
+
+        Args:
+            oop_valid_definition (Dict[str, float]): validated range
+                definition of OOP (out of position) player
+            ip_valid_definition (Dict[str, float]): validated range
+                definition of IP (in position) player
+            valid_board (List[str]): current board for computations
+
+        Returns:
+            Dict[str, Any]: equity report, ready to serialize
+        """
 
         # adjust weights
         # look if some hands can not be played at all
@@ -91,14 +129,20 @@ class Equilator:
         oop_not_playable_hands: List[str],
         board: Optional[np.ndarray] = None,
     ) -> Dict[str, Any]:
+        """
+        Encapsulates logic of equity report (np.ndarray) parsing.
+        """
 
+        # getting equity report (array)
         result_array = self.get_equity_report_array(
             oop_range_array=oop_range_array,
             ip_range_array=ip_range_array,
             board=board
         )
+        # declaring future readable report
         resulting_dict: Dict[str, Any] = {"hands_equity": {}}
 
+        # parsing array, setting values in resulting_dict
         total_equity_exists = False
         for i, hand in enumerate(oop_playable_hands):
             result_in_array = result_array[i]
@@ -124,6 +168,11 @@ class Equilator:
         valid_definition: Dict[str, float],
         board: List[str]
     ) -> Tuple[List[str], List[str]]:
+        """
+        Excludes hands from range, which can not be played in corrent board.
+        Returns 2 lists: playable and not playable.
+        """
+
         playable_hands = []
         not_playable_hands = []
         for hand, weight in valid_definition.items():
@@ -134,9 +183,14 @@ class Equilator:
         return playable_hands, not_playable_hands
 
     def _get_range_array(
-        self, valid_definition: Dict[str, float],
+        self,
+        valid_definition: Dict[str, float],
         playable_hands: List[str]
     ) -> np.ndarray:
+        """
+        Converts typical python list into numeric numpy array.
+        Numeric array will provide faster computations in compiled module.
+        """
 
         player_range_array = np.empty(
             (len(playable_hands), 3),
@@ -156,6 +210,11 @@ class Equilator:
     def _convert_board_list_to_array(
         self, board: List[str]
     ) -> Optional[np.ndarray]:
+        """
+        Converts typical python list into numeric numpy array.
+        Numeric array will provide faster computations in compiled module.
+        """
+
         board_array = None
         if board:
             board_array = np.zeros(5, dtype=np.float32)

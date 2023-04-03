@@ -1,28 +1,24 @@
 """
-All current app endpoints will be added to the router here.
+All current module endpoints will be added to the router here.
 """
 
 from typing import Dict, List
-from fastapi import APIRouter, Depends, status, Path, Query
+
+from fastapi import APIRouter, Depends, Path, Query, status
+from loguru import logger
+from pydantic import PositiveInt, confloat
+
 from openapi.core.schemas import HTTPExceptionModel, Pagination
 from openapi.modules.auth.dependencies import verify_api_key
-from openapi.modules.ranges.api.dependencies import (
-    get_ranges_repo,
-    get_repo_manager
-)
-from openapi.modules.ranges.repo_manager import RepositoriesManager
-from openapi.modules.ranges.repositories.ranges import (
-    RangesRepo)
-from openapi.modules.ranges.schemas.ranges import (
-    WeightedRange, WeightedRangeBase)
-from openapi.modules.ranges.docs.ranges import (
-    range_scheme_docs as r_docs
-)
-from openapi.modules.designations.docs.designations import (
+from openapi.modules.designations.docs.designations import \
     designation_scheme_docs as ds_docs
-)
-from pydantic import confloat, PositiveInt
-from loguru import logger
+from openapi.modules.ranges.api.dependencies import (get_ranges_repo,
+                                                     get_repo_manager)
+from openapi.modules.ranges.docs.ranges import range_scheme_docs as r_docs
+from openapi.modules.ranges.repo_manager import RepositoriesManager
+from openapi.modules.ranges.repositories.ranges import RangesRepo
+from openapi.modules.ranges.schemas.ranges import (WeightedRange,
+                                                   WeightedRangeBase)
 
 router = APIRouter(
     dependencies=[Depends(verify_api_key)]
@@ -30,7 +26,7 @@ router = APIRouter(
 
 
 @router.post(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -65,7 +61,7 @@ async def add_weighted_range(
 
 
 @router.post(
-    '/from_designation',
+    "/from_designation",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -122,7 +118,7 @@ async def add_weighted_range_using_designation(
 
 
 @router.get(
-    '',
+    "",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -151,7 +147,7 @@ async def get_weighted_ranges_collection(
 
 
 @router.delete(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -184,7 +180,7 @@ async def delete_weighted_range_by_id(
 
 
 @router.get(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},
@@ -217,7 +213,7 @@ async def get_weighted_range_by_id(
 
 
 @router.patch(
-    '/{weighted_range_id}',
+    "/{weighted_range_id}",
     responses={
         401: {"model": HTTPExceptionModel},
         403: {"model": HTTPExceptionModel},

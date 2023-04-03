@@ -11,8 +11,8 @@ router = APIRouter()
 
 
 for file in [designations]:
-
     router.include_router(
         file.router,
-        prefix=DesignationsSettings.router_prefix
+        prefix=DesignationsSettings.router_prefix,
+        tags=[DesignationsSettings.router_tag]
     )

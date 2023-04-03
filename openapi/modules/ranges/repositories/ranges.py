@@ -1,17 +1,17 @@
+import hashlib
+from typing import Any, Dict, List, Optional
+
+from pydantic import parse_obj_as
+from sqlalchemy.orm.decl_api import DeclarativeMeta
+
 from openapi.core.base_repository import BaseRepository
 from openapi.core.db.models import WeightedRangeModel
-from typing import Any, Dict, List, Optional
-from sqlalchemy.orm.decl_api import DeclarativeMeta
 from openapi.core.exceptions import DefaultException
-from openapi.core.schemas import Pagination
-from openapi.modules.ranges.schemas.ranges import (
-    WeightedRange,
-    WeightedRangeBase,
-    WeightedRangePatch
-)
-from pydantic import parse_obj_as
-import hashlib
 from openapi.core.exceptions_handlers import ReplaceExceptions
+from openapi.core.schemas import Pagination
+from openapi.modules.ranges.schemas.ranges import (WeightedRange,
+                                                   WeightedRangeBase,
+                                                   WeightedRangePatch)
 
 
 class RangesRepo(BaseRepository):
@@ -98,7 +98,7 @@ class RangesRepo(BaseRepository):
         sorted_range_str: str = self._prepare_hashable(
             definition=definition)
         hashed = hashlib.sha256(
-            sorted_range_str.encode(encoding='UTF-8', errors='strict')
+            sorted_range_str.encode(encoding="UTF-8", errors="strict")
         ).hexdigest()
         return hashed
 

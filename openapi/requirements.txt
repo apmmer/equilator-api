@@ -15,7 +15,6 @@ numpy==1.23.*
 
 # Monitoring
 sentry-sdk==1.9.*
-ddtrace==1.4.2
 
 # DB
 sqlalchemy==1.4.*

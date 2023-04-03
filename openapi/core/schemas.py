@@ -1,4 +1,5 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
+
 from pydantic import BaseModel, conint
 
 
@@ -7,7 +8,7 @@ class HTTPExceptionModel(BaseModel):
     The basic model for exception response.
     """
 
-    detail: str = 'Details of error.'
+    detail: str = "Details of error."
 
 
 class Pagination(BaseModel):
@@ -28,7 +29,12 @@ class ImprovedBaseModel(BaseModel):
         orm_mode = True
 
     @classmethod
-    def get_field_names(cls, alias=False) -> list:
+    def get_field_names(cls, alias=False) -> List:
+        """
+        Helpful function to compare existing model's fields with
+        API-docs schema.
+        """
+
         return list(cls.schema(alias).get("properties").keys())
 
     @classmethod
@@ -49,7 +55,7 @@ class ImprovedBaseModel(BaseModel):
             "required": []
         }
         # attributes for docs
-        attr_names = ['type', 'title', 'description', 'example']
+        attr_names = ["type", "title", "description", "example"]
         for field_name in cls.get_field_names():
             if field_name in docs:
                 schema["properties"][field_name] = {}

@@ -9,16 +9,18 @@ class SystemRepo:
 
     def __init__(self, db_sess: AsyncSession):
         """
-        Init DB session.
-
-        :param db_sess: Created DB session
+        Inits DB session.
         """
+
         self.db_sess = db_sess
 
-    async def get_now(self) -> str:
+    async def test_get_now(self) -> str:
         """
-        Method get current DB time
-        :return: Current DB datetime
+        Makes request to DB to get just time now.
+        Helps to check DB connection.
         """
-        data = (await self.db_sess.execute(select(text("NOW()")))).scalar()
-        return data
+
+        res = (
+            await self.db_sess.execute(select(text("NOW()")))
+        ).scalar()
+        return res

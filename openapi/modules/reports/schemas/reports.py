@@ -1,5 +1,7 @@
-from pydantic import confloat, constr, Field, PositiveInt, validator
 from typing import Dict, List, Optional
+
+from pydantic import Field, PositiveInt, confloat, constr, validator
+
 from openapi.core.exceptions import PydanticValidationError
 from openapi.core.schemas import ImprovedBaseModel
 
@@ -38,11 +40,17 @@ class ReportsPostBody(ImprovedBaseModel):
 
     @validator("board")
     def validate_board(cls, input_board):
+        """
+        Checks if entered board valid.
+        """
+
+        # preflop / flop / turn or river
         if len(input_board) not in (0, 3, 4, 5):
             raise PydanticValidationError(
                 detail="Board cards count should be in (0, 3, 4, 5)."
             )
 
+        # check all cards are from standard deck
         wrong_cards = []
         for card in input_board:
             rank, suit = card[0], card[1]
@@ -79,6 +87,11 @@ class EquityReport(ImprovedBaseModel):
 
     @validator("hands_equity")
     def round_hands_equity(cls, hands_equity):
+        """
+        Simply rounds hands equity if equity exists.
+        Equity value should be type float.
+        """
+
         for hand, value in hands_equity.items():
             if value:
                 hands_equity[hand] = round(value, 6)
@@ -86,6 +99,11 @@ class EquityReport(ImprovedBaseModel):
 
     @validator("total_equity")
     def round_total_equity(cls, value):
+        """
+        Simply rounds total equity if equity exists.
+        Equity value should be type float.
+        """
+
         if value:
             value = round(value, 6)
         return value

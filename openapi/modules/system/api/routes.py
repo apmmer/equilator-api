@@ -1,5 +1,5 @@
 """
-    All current app endpoints will be added to the router here.
+    All current module endpoints will be added to the router here.
 """
 
 from fastapi import APIRouter
@@ -12,4 +12,8 @@ router = APIRouter()
 
 for module in [system]:
 
-    router.include_router(module.router, prefix=SystemSettings.router_prefix)
+    router.include_router(
+        module.router,
+        prefix=SystemSettings.router_prefix,
+        tags=[SystemSettings.router_tag]
+    )

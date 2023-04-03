@@ -4,6 +4,8 @@ version: '3'
 services:
   equilator_api:
     image: equilator_api
+    build:
+      dockerfile: ./openapi/Dockerfile
     restart: always
     volumes:
       - ./alembic:/src/alembic
@@ -22,7 +24,7 @@ services:
         max-file: "5"
 
   equilator_api_db:
-    image: postgres:14.2
+    image: postgres:latest
     container_name: eq_db
     restart: always
     ports:
@@ -31,6 +33,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: eq_db
+    # if necessary, volumes can be enabled by:
     # volumes:
     #   - /var/lib/postgresql/data
     healthcheck:
@@ -43,22 +46,6 @@ services:
         max-size: "10m"
         max-file: "5"
 
-  # # Monitoring
-  # datadog_agent:
-  #   image: gcr.io/datadoghq/agent:7
-  #   container_name: datadog_agent
-  #   ports:
-  #     - 8126:8126
-  #   volumes:
-  #    - /var/run/docker.sock:/var/run/docker.sock
-  #    - /proc/:/host/proc/:ro
-  #    - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
-  #   <<: *env
-  #   logging:
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "5"
-
+# if necessary, volumes can be enabled by:
 # volumes:
-  # postgres_keycloak:
   # pgdata:
