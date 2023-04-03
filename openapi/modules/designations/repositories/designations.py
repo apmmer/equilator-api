@@ -24,7 +24,7 @@ class DesignationsRepo(BaseRepository):
         self,
         model: Optional[DeclarativeMeta] = DesignationModel,
         *base_repo_args,
-        **base_repo_kwargs,
+        **base_repo_kwargs
     ):
         super().__init__(model=model, *base_repo_args, **base_repo_kwargs)
 

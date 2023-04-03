@@ -5,12 +5,17 @@ from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm.decl_api import DeclarativeMeta
-from sqlalchemy.sql.selectable import Select
-
-from openapi.core.db.db_session import db_session
-from openapi.core.exceptions import (DefaultException, GotMultipleObjectsError,
-                                     ObjectNotFoundError, SQLException)
+from sqlalchemy import select, delete, text
+from openapi.core.exceptions import (
+    DefaultException,
+    GotMultipleObjectsError,
+    ObjectNotFoundError,
+    SQLException
+)
 from openapi.core.schemas import Pagination
+from sqlalchemy.sql.selectable import Select
+from openapi.core.settings import OpenapiSettings
+from openapi.core.db.db_session import db_session
 
 
 class BaseRepository:
@@ -23,11 +28,11 @@ class BaseRepository:
     """
 
     # This is a limitation for querying db
-    max_page_size = 5000
+    max_page_size = OpenapiSettings.list_items_db_limit
 
     def __init__(
         self,
-        model: DeclarativeMeta
+        model: Optional[DeclarativeMeta]
     ):
         self.model = model
 
@@ -281,7 +286,7 @@ class BaseRepository:
     async def delete_one(
         self,
         filters: Dict[str, Any],
-        existing_session: Optional[AsyncSession] = None,
+        existing_session: Optional[AsyncSession] = None
     ) -> None:
         """
         Deletes one object from db, ensures object exists,
@@ -336,5 +341,19 @@ class BaseRepository:
                 setattr(model_to_update, key, val)
             session.add(model_to_update)
             await session.commit()
-
         return model_to_update
+
+    async def get_now(
+        self,
+        existing_session: Optional[AsyncSession] = None
+    ) -> str:
+        """
+        Performs simple request to db (getting current time),
+        which is usually used as database connection check.
+        """
+
+        async with db_session(existing_session=existing_session) as session:
+            res = (
+                await session.execute(select(text("NOW()")))
+            ).scalar()
+        return res

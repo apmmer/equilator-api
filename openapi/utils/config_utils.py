@@ -1,4 +1,9 @@
-from typing import Any, List
+"""
+Module for utils 
+(functions which are not related to code,
+they can only use the built-in library)
+"""
+from typing import Any
 
 
 def convert_to_boolean(value: Any) -> bool:
@@ -12,17 +17,3 @@ def convert_to_boolean(value: Any) -> bool:
                  0, 'None', 'nan', 'none', '']:
         return False
     return bool(value)
-
-
-def split_cors_middleware(value: str, sep: str) -> List:
-    """
-    Custom splitter, which also includes separator with space.
-    """
-
-    if f'{sep} ' in value:
-        sep = f'{sep} '
-    if value and isinstance(value, str) and sep != value:
-        res = value.split(sep)
-    else:
-        res = []
-    return res
