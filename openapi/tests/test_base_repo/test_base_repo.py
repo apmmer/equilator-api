@@ -14,6 +14,8 @@ from openapi.core.exceptions import (
 
 
 class TestCaseBaseRepository(BaseRepoTests):
+    # test base repository with different models
+
     # BaseRepository.add_one(...) tests
     def test_add_one_method_exists(self):
         assert BaseRepository.__dict__.get("add_one", None)
@@ -62,13 +64,13 @@ class TestCaseBaseRepository(BaseRepoTests):
         get_items_case_fixt: List[Dict]
     ):
         for item in get_items_case_fixt:
-            print(f"TYPE = {type(item)}")
-            print(f"ITEM = {item}")
             await self.prepare_item_in_db(
                 model=item["model"],
                 session=db_session,
                 data=item["data"]
             )
+        assert type(get_items_case_fixt) == list
+        assert len(get_items_case_fixt) == 2
         repo = BaseRepository(model=get_items_case_fixt[0]["model"])
         res = await repo.get_many(existing_session=db_session)
         await db_session.commit()
@@ -160,6 +162,7 @@ class TestCaseBaseRepository(BaseRepoTests):
         with pytest.raises(GotMultipleObjectsError):
             await repo.get_one(filters={})
 
+    # BaseRepository.delete_one(...) tests
     def test_delete_one_method_exists(self):
         assert BaseRepository.__dict__.get("delete_one", None)
 
@@ -200,6 +203,7 @@ class TestCaseBaseRepository(BaseRepoTests):
                 session=db_session
             )
 
+    # BaseRepository.update_one(...) tests
     def test_update_one_method_exists(self):
         assert BaseRepository.__dict__.get("update_one", None)
 
@@ -265,6 +269,7 @@ class TestCaseBaseRepository(BaseRepoTests):
         for field_name in data_to_update.keys():
             assert getattr(db_res, field_name) == data_to_update[field_name]
 
+    # BaseRepository._handle_integrity_error(...) tests
     def test__handle_integrity_error_raises_fastapi_exception(
         self,
         item_case_fixt: Dict
@@ -289,7 +294,8 @@ class TestCaseBaseRepository(BaseRepoTests):
         class FakeIntegrityError:
             class orig:
                 class __context__:
-                    detail = "test already exists"
+                    # there is a condition inside a code
+                    detail = "test 'already exists'"
 
         repo = BaseRepository(model=item_case_fixt["model"])
         with pytest.raises(SQLException):

@@ -1,10 +1,9 @@
+"""
+Module for utils 
+(functions which are not related to code,
+they can only use the built-in library)
+"""
 from typing import Any
-
-
-def split_value(value: str, separator: str = ',') -> list:
-    if value and isinstance(value, str) and separator != value:
-        return value.split(separator)
-    return []
 
 
 def convert_to_boolean(value: Any) -> bool:
@@ -18,13 +17,3 @@ def convert_to_boolean(value: Any) -> bool:
                  0, 'None', 'nan', 'none', '']:
         return False
     return bool(value)
-
-
-def split_cors_middleware(value: str, sep: str):
-    """
-    Custom splitter, which also includes separator with space.
-    """
-
-    if f'{sep} ' in value:
-        sep = f'{sep} '
-    return split_value(value, separator=sep)

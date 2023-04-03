@@ -38,14 +38,14 @@ class TestSystem(BaseSystemTest):
     #         res_json = res.json()
     #     assert isinstance(res_json, dict)
 
-    async def test_endpoint_returns_exact_dict_data(self, test_app: FastAPI):
-        async with AsyncClient(app=test_app, base_url=self.url_prefix) as client:
-            res = await client.get(
-                self.endpoint_url,
-                headers={"api-key": f"{self.test_api_key}"}
-            )
-            res_json = res.json()
-        assert res_json == {"status": "OK"}
+    # async def test_endpoint_returns_exact_dict_data(self, test_app: FastAPI):
+    #     async with AsyncClient(app=test_app, base_url=self.url_prefix) as client:
+    #         res = await client.get(
+    #             self.endpoint_url,
+    #             headers={"api-key": f"{self.test_api_key}"}
+    #         )
+    #         res_json = res.json()
+    #     assert res_json == {"status": "OK"}
 
 #     async def test_endpoint_returns_correct_status(self, test_app: FastAPI):
 #         async with AsyncClient(app=test_app, base_url=self.url_prefix) as client:

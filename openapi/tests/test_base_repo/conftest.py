@@ -25,43 +25,44 @@ items_cases = [
             "range_length": 12
         }
     },
-    # {
-    #     "model": DesignationModel,
-    #     "data": {
-    #         "id": "test2",
-    #         "range_length": 12,
-    #         "range_definition": "KK+"
-    #     },
-    #     "filter_field": "id",
-    #     "update_fields": {
-    #         "range_definition": "QQ+",
-    #         "range_length": 18
-    #     }
-    # },
-    # {
-    #     "model": WeightedRangeModel,
-    #     "data": {
-    #         "name": "test",
-    #         "hash": "test",
-    #         "definition": {"AhAd": 0.5}
-    #     },
-    #     "filter_field": "hash",
-    #     "update_fields": {
-    #         "definition": {"AhAd": 0.1}
-    #     }
-    # },
-    # {
-    #     "model": WeightedRangeModel,
-    #     "data": {
-    #         "name": "test2",
-    #         "hash": "test2",
-    #         "definition": {"AhAd": 0.5, "KcKs": 0.1}
-    #     },
-    #     "filter_field": "hash",
-    #     "update_fields": {
-    #         "definition": {"AhAd": 0.9, "KcKs": 0.6}
-    #     }
-    # }
+    {
+        "model": DesignationModel,
+        "data": {
+            "id": "test2",
+            "range_length": 12,
+            "range_definition": "KK+"
+        },
+        "filter_field": "id",
+        "update_fields": {
+            "range_definition": "QQ+",
+            "range_length": 18
+        }
+    },
+    # WeightedRangeModel items
+    {
+        "model": WeightedRangeModel,
+        "data": {
+            "name": "test",
+            "hash": "test",
+            "definition": {"AhAd": 0.5}
+        },
+        "filter_field": "hash",
+        "update_fields": {
+            "definition": {"AhAd": 0.1}
+        }
+    },
+    {
+        "model": WeightedRangeModel,
+        "data": {
+            "name": "test2",
+            "hash": "test2",
+            "definition": {"AhAd": 0.5, "KcKs": 0.1}
+        },
+        "filter_field": "hash",
+        "update_fields": {
+            "definition": {"AhAd": 0.9, "KcKs": 0.6}
+        }
+    }
 ]
 
 
@@ -70,9 +71,11 @@ class BaseRepoTests(BaseTest):
     async def item_case_fixt(self, request) -> Dict:
         return request.param
 
-    @fixture()
-    async def get_items_case_fixt(self) -> Dict:
-        return items_cases
+    @fixture(
+        params=[items_cases[:2], items_cases[2:]]
+    )
+    async def get_items_case_fixt(self, request) -> List[Dict]:
+        return request.param
 
     async def prepare_item_in_db(self, model, data, session):
         new_model: DeclarativeMeta = model(**data)
@@ -87,3 +90,5 @@ class BaseRepoTests(BaseTest):
         ).scalars().unique().all()
         await session.commit()
         return result[0]
+
+
