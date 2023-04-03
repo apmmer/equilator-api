@@ -19,7 +19,7 @@ async def trigger_error():
     """
 
     if OpenapiSettings.monitoring_enabled is False:
-        raise DefaultException(
+        raise Exception(
             detail="Monitoring is not enabled in settings!"
         )
     logger.warning("Raised test sentry exception.")
