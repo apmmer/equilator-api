@@ -6,7 +6,7 @@ services:
     container_name: equilator_api_test
     command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
                       coverage report --precision=2 --sort=cover --skip-empty --show-missing"
-    # command: sh -c "pytest -s openapi/tests/test_base_repo/test_base_repo.py::TestCaseBaseRepository::test_get_many_returns_list_of_items"
+    # command: sh -c "pytest -s openapi/tests/test_engine"
     depends_on:
       equilator_api_db_test:
         condition:

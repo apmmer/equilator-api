@@ -5,9 +5,6 @@ from openapi.modules.system.api.routes import router
 from openapi.modules.system.settings import SystemSettings
 from openapi.tests.conftest import BaseTest
 from openapi.modules.system.api.dependencies import get_system_repo
-from sqlalchemy.ext.asyncio.session import AsyncSession
-from openapi.core.db.db_session import db_session
-
 
 
 class FakeSystemRepo:
@@ -17,7 +14,6 @@ class FakeSystemRepo:
 
 class BaseSystemTest(BaseTest):
     url_prefix: str = f"http://test{SystemSettings.router_prefix}"
-
 
     @staticmethod
     async def override_get_system_repo():
