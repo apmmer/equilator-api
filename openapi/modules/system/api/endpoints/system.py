@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from openapi.core.schemas import HTTPExceptionModel
-from openapi.modules.system.api.dependencies import get_system_session
+from openapi.modules.system.api.dependencies import get_system_repo
 from openapi.modules.system.repositories.system import SystemRepo
 from openapi.modules.auth.dependencies import verify_api_key
 from openapi.core.db.db_session import db_session
@@ -22,9 +22,7 @@ router = APIRouter(
     status_code=status.HTTP_200_OK
 )
 async def healthcheck(
-    session: AsyncSession = Depends(get_system_session)
+    repo: SystemRepo = Depends(get_system_repo)
 ):
-    repo = SystemRepo(model=None)
-    async with db_session() as session:
-        await repo.get_now(existing_session=session)
+    await repo.get_now()
     return {"status": "OK"}

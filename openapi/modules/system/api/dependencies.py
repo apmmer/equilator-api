@@ -1,8 +1,5 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from openapi.core.db.db_session import db_session
+from openapi.modules.system.repositories.system import SystemRepo
 
 
-async def get_system_session() -> AsyncSession:
-    async with db_session() as sess:
-        yield sess
+async def get_system_repo() -> SystemRepo:
+    return SystemRepo(model=None)

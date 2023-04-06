@@ -6,6 +6,7 @@ services:
     image: equilator_api
     build:
       dockerfile: ./openapi/Dockerfile
+      context: .
     restart: always
     volumes:
       - ./alembic:/src/alembic
