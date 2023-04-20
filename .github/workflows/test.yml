@@ -39,10 +39,10 @@ jobs:
         pip install -r openapi/requirements.txt
 
     - name: Wait for PostgreSQL to be ready
-      timeout-minutes: 1
+      timeout-minutes: 2
       run: |
         until pg_isready -U root -d eq_db -h equilator_api_db -p 5432; do
-          sleep 1
+          sleep 3
         done
 
     - name: Run tests
