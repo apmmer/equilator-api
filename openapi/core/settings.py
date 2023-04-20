@@ -26,7 +26,7 @@ class OpenapiSettings:
 
     database_url: str = getenv(
         "DATABASE_URL",
-        getenv("TEST_DATABASE_URL")
+        "postgresql+asyncpg://root:root@equilator_api_db:5432/eq_db"
     )
 
     included_modules: List[str] = [
@@ -71,7 +71,6 @@ class TestSettings:
     """
 
     tests_path: str = f"{BASE_PATH}/tests"
-    server_type: str = getenv('SERVER_TYPE', 'test')
 
     # modules for testing
     included_modules: List[str] = [
