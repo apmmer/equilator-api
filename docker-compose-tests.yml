@@ -17,7 +17,7 @@ services:
   equilator_api_db_test:
     image: postgres:14.2
     ports:
-      - 5544:5432
+      - 5432:5432
     environment:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test

@@ -7,6 +7,8 @@ services:
     build:
       dockerfile: ./openapi/Dockerfile
       context: .
+    command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
+                      coverage report --precision=2 --sort=cover --skip-empty --show-missing"
     restart: always
     volumes:
       - ./alembic:/src/alembic
@@ -29,10 +31,10 @@ services:
     container_name: eq_db
     restart: always
     ports:
-      - 5544:5432
+      - 5432:5432
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: ${POSTGRES_USER:-root}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
       POSTGRES_DB: eq_db
     # if necessary, volumes can be enabled by:
     # volumes:

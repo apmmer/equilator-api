@@ -17,7 +17,7 @@ jobs:
           POSTGRES_PASSWORD: root
           POSTGRES_DB: eq_db
         ports:
-          - 5544:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -38,7 +38,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r openapi/requirements.txt
 
+    - name: Wait for PostgreSQL to be ready
+      timeout-minutes: 1
+      run: |
+        until pg_isready -U root -d eq_db -h equilator_api_db -p 5432; do
+          sleep 1
+        done
+
     - name: Run tests
       run: |
-        coverage run --rcfile=.coveragerc -m pytest -s openapi -vv
-        coverage report --precision=2 --sort=cover --skip-empty --show-missing
+        pytest -s openapi

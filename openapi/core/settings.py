@@ -15,7 +15,7 @@ from openapi.utils.config_utils import convert_to_boolean
 BASE_PATH = Path(__file__).resolve().parent.parent
 PROJECT_PATH = BASE_PATH.resolve().parent
 
-logger.info(f"Loading env from {PROJECT_PATH}")
+logger.info(f"Loading alternative env from {PROJECT_PATH}/.env")
 load_dotenv(f"{PROJECT_PATH}/.env")
 
 
