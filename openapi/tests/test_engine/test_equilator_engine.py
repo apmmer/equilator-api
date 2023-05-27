@@ -1,6 +1,7 @@
 from typing import Dict
-from openapi.tests.test_engine.conftest import EquilatorTest
+
 from openapi.modules.equilator.engine.equilator import Equilator
+from openapi.tests.test_engine.conftest import EquilatorTest
 
 
 class TestCaseRangeConverter(EquilatorTest):

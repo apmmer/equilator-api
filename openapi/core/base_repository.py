@@ -1,21 +1,17 @@
 from typing import Any, Dict, List, Optional
 
 from loguru import logger
-from sqlalchemy import delete, select
+from sqlalchemy import delete, select, text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm.decl_api import DeclarativeMeta
-from sqlalchemy import select, delete, text
-from openapi.core.exceptions import (
-    DefaultException,
-    GotMultipleObjectsError,
-    ObjectNotFoundError,
-    SQLException
-)
-from openapi.core.schemas import Pagination
 from sqlalchemy.sql.selectable import Select
-from openapi.core.settings import OpenapiSettings
+
 from openapi.core.db.db_session import db_session
+from openapi.core.exceptions import (DefaultException, GotMultipleObjectsError,
+                                     ObjectNotFoundError, SQLException)
+from openapi.core.schemas import Pagination
+from openapi.core.settings import OpenapiSettings
 
 
 class BaseRepository:

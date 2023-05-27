@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from openapi.modules.monitoring.api.routes import router
 from openapi.tests.conftest import BaseTest
 
+
 class FakeSentrySDK:
     init_called_times = 0
 

@@ -1,9 +1,11 @@
-from fastapi import FastAPI
-from openapi.modules.designations.settings import DesignationsSettings
-from httpx import AsyncClient, Response
-from openapi.tests.test_designations.conftest import DesignationsTest
-from openapi.core.settings import TestSettings
 from typing import Dict
+
+from fastapi import FastAPI
+from httpx import AsyncClient, Response
+
+from openapi.core.settings import TestSettings
+from openapi.modules.designations.settings import DesignationsSettings
+from openapi.tests.test_designations.conftest import DesignationsTest
 
 
 class TestCaseDesignationsGetManyEndpoint(DesignationsTest):

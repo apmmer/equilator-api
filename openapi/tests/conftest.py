@@ -1,16 +1,18 @@
+import asyncio
 import inspect
+
 import pytest
 from _pytest.runner import runtestprotocol
 from fastapi import FastAPI
-from openapi.modules.auth.dependencies import verify_api_key
-from openapi.tests.auth import override_verify_api_key
-from openapi.core.settings import TestSettings
-from sqlalchemy.ext.asyncio.session import AsyncSession
-from openapi.core.db.db_session import db_session
-import asyncio
 from loguru import logger
-from openapi.tests import alembic_scripts
+from sqlalchemy.ext.asyncio.session import AsyncSession
+
 import alembic.config
+from openapi.core.db.db_session import db_session
+from openapi.core.settings import TestSettings
+from openapi.modules.auth.dependencies import verify_api_key
+from openapi.tests import alembic_scripts
+from openapi.tests.auth import override_verify_api_key
 
 
 class BaseTest:

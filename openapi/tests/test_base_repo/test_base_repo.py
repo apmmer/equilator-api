@@ -1,16 +1,14 @@
 import inspect
+from typing import Dict, List
+
+import pytest
+from sqlalchemy.ext.asyncio.session import AsyncSession
+
 from openapi.core.base_repository import BaseRepository
+from openapi.core.exceptions import (DefaultException, GotMultipleObjectsError,
+                                     ObjectNotFoundError, SQLException)
 from openapi.tests.conftest import BaseTest
 from openapi.tests.test_base_repo.conftest import BaseRepoTests
-from sqlalchemy.ext.asyncio.session import AsyncSession
-from typing import Dict, List
-import pytest
-from openapi.core.exceptions import (
-    ObjectNotFoundError,
-    GotMultipleObjectsError,
-    DefaultException,
-    SQLException
-)
 
 
 class TestCaseBaseRepository(BaseRepoTests):

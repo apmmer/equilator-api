@@ -30,4 +30,4 @@ migrate:
 
 tests: build prune
 	# build images, prune data and run tests
-	docker-compose -f docker-compose-tests.yml up --abort-on-container-exit
+	docker-compose -f docker-compose.test.yml up --exit-code-from equilator_api_test

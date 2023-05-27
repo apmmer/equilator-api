@@ -1,11 +1,10 @@
 from fastapi import FastAPI
-from openapi.modules.designations.settings import DesignationsSettings
 from httpx import AsyncClient, Response
-from openapi.tests.test_designations.conftest import (
-    DesignationsTest,
-    FakeDesignationsRepo
-)
+
 from openapi.core.settings import TestSettings
+from openapi.modules.designations.settings import DesignationsSettings
+from openapi.tests.test_designations.conftest import (DesignationsTest,
+                                                      FakeDesignationsRepo)
 
 
 class TestCaseDesignationsGetOneEndpoint(DesignationsTest):
