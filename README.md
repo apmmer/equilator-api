@@ -84,8 +84,7 @@ To add your custom ranges, please follow these steps:
     ```
 
 5. **Execute**: Click on the "**Execute**" button.
-
-If done correctly, the response code should be **201**, indicating successful recording of your designation.  
+If done correctly, the response code should be **201**, indicating successful recording of your designation.
 
 ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/post_designation_res.png?raw=true)
 
