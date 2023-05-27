@@ -10,14 +10,15 @@
 ![welcome pic](https://github.com/vik-backend/equilator-api/blob/main/static/shouldIwin.jpg?raw=true)  
 The Equilator is a dedicated poker hand analysis service, designed to **store poker hand ranges** and **efficiently calculate the probabilities of winning** under various circumstances. Its power lies in its **speed**, **precision**, and **standalone capabilities**. Here are its key features:
 
- - **Supports range-vs-range (r-r), hand-vs-hand (h-h), hand-vs-range (h-r), and range-vs-hand (r-h) calculations.**
+ - **Supports range-vs-range, hand-vs-hand, hand-vs-range or range-vs-hand calculations.**
  - **Enables custom hand weights calculations** with an output for each hand in the range.
  - Comprehensive coverage of all game stages: **Preflop, Flop, Turn, and River.**
- - **Exceptional performance** while remaining simple, compact, and standalone.
+ - **Exceptional performance** while remaining standalone.
   
-Please note that this is a single-core version of the Equilator. A more powerful multi-core version, which **runs multiple times faster** and offers the **possibility to calculate the full postflop tree by a single request with NO PENALTY**, is also available for purchase. It has been designed to serve as a **self-sufficient alternative to commercial solutions like FlopZilla or Piosolver**. For more information about the commercial version, please feel free to get in touch.  
+Please note that this is a single-core version of the Equilator. If you are interested in more powerful multi-core version, which runs multiple times faster and offers the possibility to calculate the full postflop tree by a single request (with no penalty!), please feel free to get in touch.  
   
-### 1. Build & run tests  
+  
+### How to Build & Run Tests 
  1. Ensure [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) are installed on your system.  
  2. Ensure your system has at least 1 GB of free RAM.  
   
@@ -44,7 +45,7 @@ After confirming the above, follow these steps:
    ```
   
   
-### 2. Run equilator-API  
+### How to Run the Equilator API
  - Run from project directory:  
    ```bash
    make run-all
@@ -58,31 +59,56 @@ After confirming the above, follow these steps:
  - Once the service is running, you can access the interactive documentation by navigating to [0.0.0.0:8000/docs](http://0.0.0.0:8000/docs) in your web browser.  
   
   
-## Detailed usage description
-### 1. Add your custom ranges designations
- - Find  
-  ![auth button](https://github.com/vik-backend/equilator-api/blob/main/static/authorize_button.png?raw=true)  
-  on the top right. Enter your apikey from **.env** there and click **Authorize** button
- - Using interactive documentation, open "***POST api/v1/designations***"
- - Familiarize yourself with the syntax of a range creation (endpoint description)
- - Click "**Try it out**" in the bottom right side, below the endpoint description
- - Input request body like this (do not make it large for the first time)  
-    ![post_designation_body](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_body.png?raw=true)  
- - Click **Execute** button  
- - Congratulations! Response code is **201** and you designation was recorded successfully  
-    ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_res.png?raw=true)  
+## Detailed Usage Guide
 
-### 2. Create weighted ranges from designations
- - Visit "***POST api/v1/weighted_ranges/from_designation***"
- - Input valid params data and click **Execute**  
-  ![highjack_opening](https://github.com/vik-backend/equilator-api/blob/main/static/highjack_opening.png?raw=true)  
- - Now you can see combos with declared default weight  
- - Weight can be changed using "***PATCH api/v1/weighted_ranges/{weighted_range_id}***" endpoint
+Follow this step-by-step guide to get the most out of the Equilator.
 
-### 3. Make equity computations
- - Create at least 2 weighted ranges (with different names)
- - Visit "***POST api/v1/reports/equity_report***"
- - Set your ranges IDs and board (cards on the table) to calculate winning probabilities  
-    ![equity_request](https://github.com/vik-backend/equilator-api/blob/main/static/equity_request.png?raw=true)  
- - Click **Execute** button and get your equity report:  
-  ![equity_response](https://github.com/vik-backend/equilator-api/blob/main/static/equity_response.png?raw=true)  
+### 1. Add Your Custom Ranges Designations
+
+To add your custom ranges, please follow these steps:
+
+1. **Authorize**: On the top right, find the "**Authorize**" button. Enter your apikey from your **.env** file and click on "**Authorize**".
+
+   ![auth button](https://github.com/vik-backend/equilator-api/blob/main/static/authorize_button.png?raw=true)
+
+2. **Open Endpoint**: Using interactive documentation, open "**POST api/v1/designations**". Familiarize yourself with the syntax of a range creation (endpoint description).
+
+3. **Try It Out**: Click on "**Try it out**" on the bottom right side, below the endpoint description.
+
+4. **Enter Request Body**: Input the request body. Make sure to keep it small initially.
+
+   ![post_designation_body](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_body.png?raw=true)
+
+5. **Execute**: Click on the "**Execute**" button.
+
+If done correctly, the response code should be **201**, indicating successful recording of your designation.
+
+   ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_res.png?raw=true)
+
+### 2. Create Weighted Ranges from Designations
+
+To create weighted ranges from designations:
+
+1. **Open Endpoint**: Visit "**POST api/v1/weighted_ranges/from_designation**".
+
+2. **Enter Parameters**: Input valid parameters data and click on "**Execute**".
+
+   ![highjack_opening](https://github.com/vik-backend/equilator-api/blob/main/static/highjack_opening.png?raw=true)
+
+Now, you can see combos with declared default weight. Weight can be changed using the "**PATCH api/v1/weighted_ranges/{weighted_range_id}**" endpoint.
+
+### 3. Equity Computations
+
+To compute equity, you need at least 2 weighted ranges (with different names). Here's how you do it:
+
+1. **Open Endpoint**: Visit "**POST api/v1/reports/equity_report**".
+
+2. **Set Parameters**: Set your ranges IDs and board (cards on the table) to calculate winning probabilities.
+
+   ![equity_request](https://github.com/vik-backend/equilator-api/blob/main/static/equity_request.png?raw=true)
+
+3. **Execute**: Click on the "**Execute**" button.
+
+You will then receive your equity report:
+
+![equity_response](https://github.com/vik-backend/equilator-api/blob/main/static/equity_response.png?raw=true)
