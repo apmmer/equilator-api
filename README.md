@@ -85,9 +85,9 @@ To add your custom ranges, please follow these steps:
 
 5. **Execute**: Click on the "**Execute**" button.
 
-If done correctly, the response code should be **201**, indicating successful recording of your designation.
+If done correctly, the response code should be **201**, indicating successful recording of your designation.  
 
-   ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/post_designation_res.png?raw=true)
+![post_designation_res](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/post_designation_res.png?raw=true)
 
 ### 2. Create Weighted Ranges from Designations
 
@@ -95,9 +95,9 @@ To create weighted ranges from designations:
 
 1. **Open Endpoint**: Visit "**POST api/v1/weighted_ranges/from_designation**".
 
-2. **Enter Parameters**: Input valid parameters data and click on "**Execute**".
+2. **Enter Parameters**: Input valid parameters data and click on "**Execute**".  
 
-   ![highjack_opening](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/highjack_opening.png?raw=true)
+![highjack_opening](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/highjack_opening.png?raw=true)
 
 Now, you can see combos with declared default weight. Weight can be changed using the "**PATCH api/v1/weighted_ranges/{weighted_range_id}**" endpoint.
 
@@ -107,9 +107,9 @@ To compute equity, you need at least 2 weighted ranges (with different names). H
 
 1. **Open Endpoint**: Visit "**POST api/v1/reports/equity_report**".
 
-2. **Set Parameters**: Set your ranges IDs and board (cards on the table) to calculate winning probabilities.
+2. **Set Parameters**: Set your ranges IDs and board (cards on the table) to calculate winning probabilities.  
 
-   ![equity_request](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/equity_request.png?raw=true)
+![equity_request](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/equity_request.png?raw=true)
 
 3. **Execute**: Click on the "**Execute**" button.
 
