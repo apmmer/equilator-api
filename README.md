@@ -13,7 +13,7 @@ The Equilator is a dedicated poker hand analysis service, designed to **store po
  - **Supports range-vs-range, hand-vs-hand, hand-vs-range or range-vs-hand calculations.**
  - **Enables custom hand weights calculations** with an output for each hand in the range.
  - Comprehensive coverage of all game stages: **Preflop, Flop, Turn, and River.**
- - **Exceptional performance** while remaining precise and standalone.  
+ - **Exceptional performance** while remaining **precise and standalone**.  
   
 Please note that this is a single-core version of the Equilator. If you are interested in more powerful multi-core version, which runs multiple times faster and offers the possibility to calculate the full postflop tree by a single request (with no penalty!), please feel free to get in touch.  
   
