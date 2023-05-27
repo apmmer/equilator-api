@@ -23,6 +23,14 @@ class RepositoriesManager:
     ) -> WeightedRange:
         """
         Converts range designation into weighted range using both repositories
+
+        Args:
+            name (str): name of a weighted range
+            designation_id (str): link to a designation
+            default_weight (float): this weight will be applied to all hands in range
+
+        Returns:
+            WeightedRange: created weight range object
         """
 
         designation = await self.designation_repo.get_an_item(

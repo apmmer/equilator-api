@@ -30,16 +30,6 @@ class DefaultException(HTTPException):
             self.status_code = status_code
 
 
-class AuthorizationError(DefaultException):
-    detail: str = "Invalid keycloak token."
-    status_code: int = status.HTTP_401_UNAUTHORIZED
-
-
-class KeycloakError(DefaultException):
-    detail: str = "Server can not process with keycloak for some reason."
-    status_code: int = status.HTTP_500_INTERNAL_SERVER_ERROR
-
-
 class ObjectNotFoundError(DefaultException):
     detail: str = "Object not found."
     status_code: int = status.HTTP_404_NOT_FOUND

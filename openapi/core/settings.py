@@ -15,7 +15,7 @@ from openapi.utils.config_utils import convert_to_boolean
 BASE_PATH = Path(__file__).resolve().parent.parent
 PROJECT_PATH = BASE_PATH.resolve().parent
 
-logger.info(f"Loading env from {PROJECT_PATH}")
+logger.info(f"Loading alternative env from {PROJECT_PATH}/.env")
 load_dotenv(f"{PROJECT_PATH}/.env")
 
 
@@ -26,15 +26,15 @@ class OpenapiSettings:
 
     database_url: str = getenv(
         "DATABASE_URL",
-        getenv("TEST_DATABASE_URL")
+        "postgresql+asyncpg://root:root@equilator_api_db:5432/eq_db"
     )
 
     included_modules: List[str] = [
-        "designations",
-        "ranges",
-        "reports",
-        "monitoring",
-        "system"
+        'designations',
+        'monitoring',
+        'reports',
+        'system',
+        'ranges'
     ]
     uvicorn_port: int = int(getenv("UVICORN_PORT", 8000))
     uvicorn_host: str = getenv("UVICORN_HOST", "0.0.0.0")
@@ -59,6 +59,10 @@ class OpenapiSettings:
         getenv("MONITORING_ENABLED", False))
     sql_engine_echo: bool = convert_to_boolean(
         getenv("SQL_ENGINE_ECHO", False))
+    # This is a limitation for querying db (list of items)
+    # if more than this value is requested
+    # pagination will be used
+    list_items_db_limit: str = 5000
 
 
 class TestSettings:
@@ -67,13 +71,13 @@ class TestSettings:
     """
 
     tests_path: str = f"{BASE_PATH}/tests"
-    server_type: str = getenv("SERVER_TYPE", "test")
+
     # modules for testing
     included_modules: List[str] = [
-        "designations",
-        "monitoring",
-        "reports",
-        "system",
-        "ranges"
+        'designations',
+        'monitoring',
+        'reports',
+        'system',
+        'ranges'
     ]
     test_api_key: str = "test"

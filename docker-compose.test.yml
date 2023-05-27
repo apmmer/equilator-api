@@ -1,12 +1,15 @@
 version: '3'
 
+# launch this by "docker-compose -f docker-compose.test.yml up --exit-code-from equilator_api_test"
 services:
   equilator_api_test:
-    image: equilator_api
+    build:
+      dockerfile: ./openapi/Dockerfile
+      context: .
     container_name: equilator_api_test
     command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
                       coverage report --precision=2 --sort=cover --skip-empty --show-missing"
-    # command: sh -c "pytest -s openapi"
+    # command: sh -c "pytest -s openapi/tests/test_engine"
     depends_on:
       equilator_api_db_test:
         condition:
@@ -16,8 +19,9 @@ services:
 
   equilator_api_db_test:
     image: postgres:14.2
+    container_name: equilator_api_db_test
     ports:
-      - 5544:5432
+      - 5432:5432
     environment:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test

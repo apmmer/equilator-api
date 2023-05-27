@@ -10,10 +10,13 @@ from loguru import logger
 from openapi.core.schemas import HTTPExceptionModel, Pagination
 from openapi.modules.auth.dependencies import verify_api_key
 from openapi.modules.designations.api.dependencies import get_designations_repo
-from openapi.modules.designations.docs.designations import \
+from openapi.modules.designations.repositories.designations import (
+    DesignationsRepo)
+from openapi.modules.designations.schemas.designations import (
+    Designation, DesignationBase)
+from openapi.modules.designations.docs.designations import (
     designation_scheme_docs as ds_docs
-from openapi.modules.designations.repositories.designations import \
-    DesignationsRepo
+)
 from openapi.modules.designations.schemas.designations import (Designation,
                                                                DesignationBase)
 
