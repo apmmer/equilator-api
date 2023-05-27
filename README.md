@@ -3,11 +3,11 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![numba-badge](https://github.com/vik-backend/equilator-api/blob/main/static/numba_grey_small.jpg?raw=true) 
+![numba-badge](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/numba_grey_small.jpg?raw=true) 
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
-![welcome pic](https://github.com/vik-backend/equilator-api/blob/main/static/shouldIwin.jpg?raw=true)  
+![welcome pic](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/shouldIwin.jpg?raw=true)  
 The Equilator is a dedicated poker hand analysis service, designed to **store poker hand ranges** and **efficiently calculate the probabilities of winning** under various circumstances. Its power lies in its **speed**, **precision**, and **standalone capabilities**. Here are its key features:
 
  - **Supports range-vs-range, hand-vs-hand, hand-vs-range or range-vs-hand calculations.**
@@ -69,7 +69,7 @@ To add your custom ranges, please follow these steps:
 
 1. **Authorize**: On the top right, find the "**Authorize**" button. Enter your apikey from your **.env** file and click on "**Authorize**".
 
-   ![auth button](https://github.com/vik-backend/equilator-api/blob/main/static/authorize_button.png?raw=true)
+   ![auth button](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/authorize_button.png?raw=true)
 
 2. **Open Endpoint**: Using interactive documentation, open "**POST api/v1/designations**". Familiarize yourself with the syntax of a range creation (endpoint description).
 
@@ -87,7 +87,7 @@ To add your custom ranges, please follow these steps:
 
 If done correctly, the response code should be **201**, indicating successful recording of your designation.
 
-   ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_res.png?raw=true)
+   ![post_designation_res](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/post_designation_res.png?raw=true)
 
 ### 2. Create Weighted Ranges from Designations
 
@@ -97,7 +97,7 @@ To create weighted ranges from designations:
 
 2. **Enter Parameters**: Input valid parameters data and click on "**Execute**".
 
-   ![highjack_opening](https://github.com/vik-backend/equilator-api/blob/main/static/highjack_opening.png?raw=true)
+   ![highjack_opening](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/highjack_opening.png?raw=true)
 
 Now, you can see combos with declared default weight. Weight can be changed using the "**PATCH api/v1/weighted_ranges/{weighted_range_id}**" endpoint.
 
@@ -109,10 +109,10 @@ To compute equity, you need at least 2 weighted ranges (with different names). H
 
 2. **Set Parameters**: Set your ranges IDs and board (cards on the table) to calculate winning probabilities.
 
-   ![equity_request](https://github.com/vik-backend/equilator-api/blob/main/static/equity_request.png?raw=true)
+   ![equity_request](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/equity_request.png?raw=true)
 
 3. **Execute**: Click on the "**Execute**" button.
 
 You will then receive your equity report:
 
-![equity_response](https://github.com/vik-backend/equilator-api/blob/main/static/equity_response.png?raw=true)
+![equity_response](https://github.com/vik-backend/equilator-api/blob/files-refactor/static/equity_response.png?raw=true)
