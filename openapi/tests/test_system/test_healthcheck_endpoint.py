@@ -1,5 +1,6 @@
 from fastapi import FastAPI, status
-from httpx import Response, AsyncClient
+from httpx import AsyncClient, Response
+
 from openapi.tests.test_system.conftest import BaseSystemTest
 
 app = FastAPI()

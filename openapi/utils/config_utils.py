@@ -1,6 +1,5 @@
 """
-Module for utils 
-(functions which are not related to code,
+Module for utils (functions which are not related to code,
 they can only use the built-in library)
 """
 from typing import Any

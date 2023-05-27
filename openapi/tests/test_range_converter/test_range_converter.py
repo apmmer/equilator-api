@@ -1,7 +1,9 @@
 from typing import Dict
+
+import pytest
+
 from openapi.modules.equilator import range_converter
 from openapi.tests.test_range_converter.conftest import RangeConverterTest
-import pytest
 
 
 class TestCaseRangeConverter(RangeConverterTest):

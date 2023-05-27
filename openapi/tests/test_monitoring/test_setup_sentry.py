@@ -1,5 +1,6 @@
 from openapi.modules.monitoring.setup import setup_sentry
-from openapi.tests.test_monitoring.conftest import FakeSentrySDK, MonitoringTest
+from openapi.tests.test_monitoring.conftest import (FakeSentrySDK,
+                                                    MonitoringTest)
 
 
 class Testsuite_setup_sentry(MonitoringTest):

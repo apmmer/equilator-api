@@ -1,10 +1,10 @@
 import pytest
 from fastapi import FastAPI
 
+from openapi.modules.system.api.dependencies import get_system_repo
 from openapi.modules.system.api.routes import router
 from openapi.modules.system.settings import SystemSettings
 from openapi.tests.conftest import BaseTest
-from openapi.modules.system.api.dependencies import get_system_repo
 
 
 class FakeSystemRepo:

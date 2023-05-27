@@ -1,11 +1,12 @@
-from openapi.core.db.models import DesignationModel, WeightedRangeModel
-from pytest import fixture
 from typing import Dict, List
-from sqlalchemy import select
-from openapi.core.db.db_session import db_session
-from sqlalchemy.orm.decl_api import DeclarativeMeta
-from openapi.tests.conftest import BaseTest
 
+from pytest import fixture
+from sqlalchemy import select
+from sqlalchemy.orm.decl_api import DeclarativeMeta
+
+from openapi.core.db.db_session import db_session
+from openapi.core.db.models import DesignationModel, WeightedRangeModel
+from openapi.tests.conftest import BaseTest
 
 items_cases = [
     {

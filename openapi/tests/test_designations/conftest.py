@@ -1,11 +1,13 @@
-from openapi.tests.conftest import BaseTest
+from typing import Dict
+
 from fastapi import FastAPI
 from pytest import fixture
-from openapi.modules.designations.api.routes import router
-from typing import Dict
-from openapi.modules.designations.schemas.designations import Designation
 
 from openapi.modules.designations.api.dependencies import get_designations_repo
+from openapi.modules.designations.api.routes import router
+from openapi.modules.designations.schemas.designations import Designation
+from openapi.tests.conftest import BaseTest
+
 wrong_post_data_cases = [
     {},
     {"range_definition": "asdf"},

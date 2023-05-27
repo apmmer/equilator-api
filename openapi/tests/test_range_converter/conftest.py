@@ -1,8 +1,9 @@
-from openapi.tests.test_designations.conftest import correct_post_data_cases
-from pytest import fixture
 from typing import Dict
-from openapi.modules.equilator.exceptions import ConverterError
 
+from pytest import fixture
+
+from openapi.modules.equilator.exceptions import ConverterError
+from openapi.tests.test_designations.conftest import correct_post_data_cases
 
 cards_cases = [
     {

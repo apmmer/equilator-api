@@ -1,13 +1,10 @@
-from pytest import fixture
 from typing import Dict
-from openapi.modules.equilator.engine.equilator import Equilator
-from openapi.tests.test_engine.cases import (
-    flop_cases,
-    turn_cases,
-    river_cases,
-    preflop_cases
-)
 
+from pytest import fixture
+
+from openapi.modules.equilator.engine.equilator import Equilator
+from openapi.tests.test_engine.cases import (flop_cases, preflop_cases,
+                                             river_cases, turn_cases)
 
 invalid_cases = []
 for cases in [

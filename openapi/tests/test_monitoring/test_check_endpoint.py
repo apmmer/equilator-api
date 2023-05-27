@@ -6,6 +6,7 @@ from openapi.core.settings import TestSettings
 from openapi.modules.monitoring.settings import SentrySettings
 from openapi.tests.test_monitoring.conftest import MonitoringTest
 
+
 class Testsuite_check_sentry_endpoint(MonitoringTest):
     url_prefix: str = f"http://test{SentrySettings.router_prefix}"
     endpoint_url: str = "/check"

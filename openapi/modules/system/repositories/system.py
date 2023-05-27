@@ -1,4 +1,3 @@
-from sqlalchemy.ext.asyncio import AsyncSession
 from openapi.core.base_repository import BaseRepository
 
 

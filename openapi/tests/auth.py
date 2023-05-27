@@ -1,4 +1,5 @@
 from fastapi import Depends
+
 from openapi.core.settings import TestSettings
 from openapi.modules.auth.dependencies import api_key_scheme
 from openapi.modules.auth.exceptions import InvalidApiKeyError, NoApiKeySent
