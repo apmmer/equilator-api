@@ -15,6 +15,13 @@ services:
       - 8000:8000
     env_file:
       - ./.env.example
+    environment:
+      UVICORN_HOST: ${UVICORN_HOST:-0.0.0.0}
+      UVICORN_PORT: ${UVICORN_PORT:-8000}
+      API_TITLE: ${API_TITLE:-Equilator API}
+      API_VERSION: ${API_VERSION:-Equilator API}
+      API_KEY: ${API_KEY:-secret}
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://root:root@equilator_api_db:5432/eq_db}
     depends_on:
       equilator_api_db:
         condition:
@@ -34,9 +41,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-root}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
       POSTGRES_DB: eq_db
-    # if necessary, volumes can be enabled by:
-    # volumes:
-    #   - /var/lib/postgresql/data
     healthcheck:
       test: pg_isready -U root -d eq_db
       interval: 2s
@@ -46,7 +50,3 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-
-# if necessary, volumes can be enabled by:
-# volumes:
-  # pgdata:

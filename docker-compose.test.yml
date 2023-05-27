@@ -9,7 +9,6 @@ services:
     container_name: equilator_api_test
     command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
                       coverage report --precision=2 --sort=cover --skip-empty --show-missing"
-    # command: sh -c "pytest -s openapi/tests/test_engine"
     depends_on:
       equilator_api_db_test:
         condition:
@@ -26,8 +25,6 @@ services:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       POSTGRES_DB: test_db
-    # volumes:
-    #   - /var/lib/postgresql/data
     healthcheck:
       test: pg_isready -U test -d test_db
       interval: 2s
