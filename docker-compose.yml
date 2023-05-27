@@ -3,12 +3,10 @@ version: '3'
 
 services:
   equilator_api:
-    image: equilator_api
     build:
       dockerfile: ./openapi/Dockerfile
       context: .
-    command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
-                      coverage report --precision=2 --sort=cover --skip-empty --show-missing"
+    container_name: equilator_api
     restart: always
     volumes:
       - ./alembic:/src/alembic

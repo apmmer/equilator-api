@@ -11,7 +11,7 @@ jobs:
 
     services:
       equilator_api_db:
-        image: postgres:latest
+        image: postgres:14.2
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: root
