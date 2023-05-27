@@ -1,50 +1,30 @@
 name: Run Tests
 
 on:
+  push:
+    branches:
+      - sharpening
   pull_request:
     branches:
       - main
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   run-tests:
     runs-on: ubuntu-latest
 
-    services:
-      equilator_api_db:
-        image: postgres:14.2
-        env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: root
-          POSTGRES_DB: eq_db
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r openapi/requirements.txt
 
-    - name: Wait for PostgreSQL to be ready
-      timeout-minutes: 2
-      run: |
-        until pg_isready -U root -d eq_db -h equilator_api_db -p 5432; do
-          sleep 3
-        done
-
     - name: Run tests
       run: |
-        pytest -s openapi
+        docker-compose -f docker-compose.test.yml up --exit-code-from equilator_api_test
