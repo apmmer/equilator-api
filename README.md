@@ -13,7 +13,7 @@ The Equilator is a dedicated poker hand analysis service, designed to **store po
  - **Supports range-vs-range, hand-vs-hand, hand-vs-range or range-vs-hand calculations.**
  - **Enables custom hand weights calculations** with an output for each hand in the range.
  - Comprehensive coverage of all game stages: **Preflop, Flop, Turn, and River.**
- - **Exceptional performance** while remaining standalone.
+ - **Exceptional performance** while remaining precise and standalone.  
   
 Please note that this is a single-core version of the Equilator. If you are interested in more powerful multi-core version, which runs multiple times faster and offers the possibility to calculate the full postflop tree by a single request (with no penalty!), please feel free to get in touch.  
   
@@ -75,9 +75,13 @@ To add your custom ranges, please follow these steps:
 
 3. **Try It Out**: Click on "**Try it out**" on the bottom right side, below the endpoint description.
 
-4. **Enter Request Body**: Input the request body. Make sure to keep it small initially.
-
-   ![post_designation_body](https://github.com/vik-backend/equilator-api/blob/main/static/post_designation_body.png?raw=true)
+4. **Enter Request Body**: Input the request body. Make sure to keep it small initially.  
+   Request body example:
+    ```bash
+    {
+      "range_definition": "AKs,9h9s"
+    }
+    ```
 
 5. **Execute**: Click on the "**Execute**" button.
 

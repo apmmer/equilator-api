@@ -1,6 +1,16 @@
+# Unnecessary python files
 *.py[cod]
+**__pycache__/
+**.pytest_cache
+
+# Dev files
 Equilator_venv/
 compiled_funcs/
-**__pycache__/
-trash/
 venv/
+.vscode/
+
+# Other
+trash/
+
+
+
