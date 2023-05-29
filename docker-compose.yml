@@ -16,12 +16,14 @@ services:
     env_file:
       - ./.env.example
     environment:
-      UVICORN_HOST: ${UVICORN_HOST:-0.0.0.0}
-      UVICORN_PORT: ${UVICORN_PORT:-8000}
-      API_TITLE: ${API_TITLE:-Equilator API}
+      # Env variables have default values, and there is no need to pass them all.
+      # The following are the ones that are recommended to transmit:
       API_VERSION: ${API_VERSION:-Equilator API}
       API_KEY: ${API_KEY:-secret}
       DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://root:root@equilator_api_db:5432/eq_db}
+      SQL_ENGINE_ECHO: ${SQL_ENGINE_ECHO:-0}
+      MONITORING_ENABLED: ${MONITORING_ENABLED:-False}
+      SENTRY_DSN: ${SENTRY_DSN:-https://sentry_link}
     depends_on:
       equilator_api_db:
         condition:

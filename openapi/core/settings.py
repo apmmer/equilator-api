@@ -39,7 +39,7 @@ class OpenapiSettings:
     uvicorn_port: int = int(getenv("UVICORN_PORT", 8000))
     uvicorn_host: str = getenv("UVICORN_HOST", "0.0.0.0")
     router_prefix: str = "/api/v1"
-    title: str = getenv("API_TITLE", "OpenAPI")
+    title: str = getenv("API_TITLE", "Equilator API")
     version: str = getenv("API_VERSION", "v0.1.0")
     description: str = (
         "API for using the equalator engine "
