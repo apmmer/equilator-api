@@ -34,7 +34,7 @@ services:
         max-file: "5"
 
   equilator_api_db:
-    image: postgres:latest
+    image: postgres:14.2
     container_name: eq_db
     restart: always
     ports:
