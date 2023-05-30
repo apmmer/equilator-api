@@ -9,12 +9,12 @@ services:
     container_name: equilator_api_test
     command: sh -c "coverage run --rcfile=.coveragerc -m pytest -s openapi -vv &&
                       coverage report --precision=2 --sort=cover --skip-empty --show-missing"
+    env_file:
+      - ./.env.tests.example
     depends_on:
       equilator_api_db_test:
         condition:
           service_healthy
-    env_file:
-      - ./.env.tests.example
 
   equilator_api_db_test:
     image: postgres:14.2

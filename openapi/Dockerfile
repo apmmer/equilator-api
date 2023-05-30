@@ -2,10 +2,17 @@ FROM python:3.10
 
 WORKDIR /src
 
-COPY openapi/requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
 
+# Install the most problematic/big libraries separately
+RUN pip install --no-cache-dir llvmlite==0.39.* numba==0.56.* numpy==1.23.*
+
+COPY openapi/requirements.txt .
+# Install the rest of the requirements
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy necessary files
 COPY alembic/ alembic/
 COPY alembic.ini .
 COPY .coveragerc .
